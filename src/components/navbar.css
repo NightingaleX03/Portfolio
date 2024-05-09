@@ -1,0 +1,45 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: black;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+.nav-links a:hover{
+    /*color:#9e4040;*/
+    color: #5d7a8f;
+}
+
+.nav-links a:hover::before {
+    content: "";
+    position: absolute;
+    top: -35px;
+    left: 0;
+    width: 60px;
+    height: 40px;
+    background-image: url('../images/samwise.png');
+    background-size: cover;
+    z-index: 1;
+}
