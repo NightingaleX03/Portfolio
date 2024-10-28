@@ -1,12 +1,19 @@
 import React from 'react';
 
-const About = () => {
-    return (
-        <div>
-            <h1>About Us</h1>
-            <p>Welcome to our about page!</p>
-        </div>
-    );
+const TypedHeader = () => {
+  return (
+    <h1>
+    </h1>
+  );
 };
 
-export default About;
+// Usage example:
+const App = () => {
+  return (
+    <div>
+      <TypedHeader />
+    </div>
+  );
+};
+
+export default App;

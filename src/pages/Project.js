@@ -1,6 +1,7 @@
 // pages/Project.js
 import React from 'react';
 
+
 const Project = () => {
     return (
         <div>
