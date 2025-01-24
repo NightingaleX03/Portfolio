@@ -4,7 +4,7 @@ import { BrowserRouter as Router, useRoutes} from 'react-router-dom';
 
 // Pages
 import Projects from './pages/Project'; // Projects page
-import AboutPage from './pages/About'; // About page
+import AboutPage from './pages/BlogPage'; // About page
 import Contact from './pages/Contact'; // Contact page
 import Homepage from './pages/HomePage'; // Home page
 

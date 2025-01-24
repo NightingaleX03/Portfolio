@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Aoboshi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
+
+
+:root{
+  --ckr-1: #9ed9dc;
+  --ckr-2: #89d1e1;
+  --ckr-3: #79c9e7;
+  --ckr-4: #6fbfee;
+  --ckr-5: #6fb3f3;
+  --ckr-6: #78a6f5;
+  --ckr-7: #8997f3;
+  --ckr-8: #9e85ea;
+  --ckr-9: #b271da;
+  --ckr-10: #c45ac4;
+}
+
+@property --gradient-angle{
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotation{
+  0%{--gradient-angle: 0deg;}
+  100%{--gradient-angle:360deg;}
+}
+/* Wrapper for the entire section */
+.intro-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 95%;
+  margin: 20px auto;
+}
+
+/* Container for the top two cards */
+.intro-container {
+  display: flex;
+  gap: 20px;
+}
+
+/* Shared card styling */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px;
+  position: relative;
+  overflow: visible;
+  background-color: #000000;
+  
+}
+
+.card::before, .card::after {
+  content: "";
+  position: absolute;
+  inset: -.2rem;
+  border-radius: inherit;
+  z-index: -1;
+  background: conic-gradient(from var(--gradient-angle), var(--ckr-1), var(--ckr-2), var(--ckr-3), var(--ckr-4), var(--ckr-5), var(--ckr-6), var(--ckr-7), var(--ckr-8), 
+    var(--ckr-9), var(--ckr-10), var(--ckr-9), var(--ckr-8), var(--ckr-7), var(--ckr-6), var(--ckr-5), var(--ckr-4), var(--ckr-3), var(--ckr-2), var(--ckr-1));
+  animation: rotation 20s linear infinite;
+  pointer-events: none;
+}
+
+
+.card::after{
+  filter:blur(1rem);
+}
+
+.card:hover::before, .card:hover::after {
+  transform: scale(1.005);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+  background-color: #000000;
+}
+
+/* Styling for the left card */
+.card-left {
+  flex: 2;
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #ffffff;
+}
+
+/* Styling for the right card */
+.card-right {
+  flex: 1;
+  background-color: #000000;
+}
+
+.card-right .card-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+/* Full-width skills container */
+.skills-container {
+  width: 95%;
+  background-color: #000000;
+  border-radius: 15px;
+  padding: 20px;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  color: #ffffff;
+}
+
+/* Header styling */
+.header-card {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #9dd9dc;
+  font-family: "Aoboshi One", sans-serif;
+  text-align: left;
+  margin: 0;
+}
+
+.corner-image {
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    width: 80px;
+    height: 60px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+/* Paragraph text styling */
+.paragraph-Text {
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  color: #ffffff;
+  text-align: left;
+  margin: 0;
+}
+
+.paragraph-Text span {
+  color: #c45ac4;
+}
+
+/* Skills icons */
+.skills-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icon {
+  display: inline-block;
+  padding: 10px 20px;
+  font-family: "Aoboshi One", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #9dd9dc;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  background-color: #9dd9dc;
+}
+
+.skills-icons i {
+    font-size: 50px;
+    margin: 10px;
+    color: #9dd9dc;
+    transition: transform 0.3s ease;
+  }
+  
+  .skills-icons i:hover {
+    transform: scale(1.2);
+    color: #9dd9dc;
+  }
