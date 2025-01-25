@@ -11,7 +11,7 @@ const Intro = () => {
       <div className="intro-container">
         <div className="card card-left">
         <img
-            src={samwise}S
+            src={samwise}
             alt="Corner Decoration"
             className="corner-image"
         />
@@ -24,7 +24,7 @@ const Intro = () => {
             Thank you for asking! I'm a recent graduate of Computer Programming at Seneca Polytechnic
             and a current student at Ontario Tech University studying Computer
             Science. <br></br>
-            I'm a passionate software developer with a passion for learning
+            I'm a passionate software developer excited to venture into the world of tech learning
             about new technologies and creating innovative solutions. <br></br> <br></br>
             <b><span>Fun Fact: </span></b>In my free time, I enjoy playing video games, stargazing, and volunteering.
           </p>
