@@ -1,0 +1,89 @@
+:root {
+    --ckr-1: #9ed9dc;
+    --ckr-2: #89d1e1;
+    --ckr-3: #79c9e7;
+    --ckr-4: #6fbfee;
+    --ckr-5: #6fb3f3;
+    --ckr-6: #78a6f5;
+    --ckr-7: #8997f3;
+    --ckr-8: #9e85ea;
+    --ckr-9: #b271da;
+    --ckr-10: #c45ac4;
+    --primary-color: #9dd9dc;
+    --background-color: #000000;
+    --text-color: #ffffff;
+  }
+  
+  .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0px auto;
+  }
+  
+  .search-bar {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    outline: none;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    z-index: 0;
+    position: relative;
+    font-family: 'Baloo Bhaina 2', sans-serif;
+    box-sizing: border-box;
+    text-align: left;
+  }
+  
+  .images-container {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    top: 50%;
+    right: -250px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+  }
+  
+  /* Individual image styling */
+  .image {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    animation: pop-up-down 1s infinite ease-in-out;
+  }
+  
+  /* Pop-up down animation */
+  @keyframes pop-up-down {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  
+  /* Delay the animation for each image */
+  .image:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .image:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .image:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  /* Show the images when typing */
+  .search-bar:focus + .images-container,
+  .search-bar:not(:placeholder-shown) + .images-container {
+    opacity: 1; 
+  }
+  
