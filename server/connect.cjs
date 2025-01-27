@@ -1,32 +1,12 @@
 // Load environment variables
-require('dotenv').config({ path: 'config.env' });
+require("dotenv").config({ path: "config.env" });
 
-const { MongoClient } = require('mongodb');
-const mongoose = require('mongoose');
+const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
+const importProjects = require("./importProjects");
 
 // MongoDB Connection URI
 const Db = process.env.ATLAS_URI;
-
-// Function to connect to MongoDB Atlas using the native MongoDB client
-async function listCollections() {
-  const client = new MongoClient(Db);
-
-  try {
-    // Connect to the database
-    await client.connect();
-
-    // Get all collections from the "Projects" database
-    const collections = await client.db('Projects').collections();
-    collections.forEach((collection) =>
-      console.log(collection.s.namespace.collection)
-    );
-  } catch (e) {
-    console.error('Error listing collections:', e);
-  } finally {
-    // Close the client connection
-    await client.close();
-  }
-}
 
 // Mongoose Schema and Model
 const projectSchema = new mongoose.Schema(
@@ -36,16 +16,27 @@ const projectSchema = new mongoose.Schema(
     image: { type: String, required: true },
     video: { type: String, required: true },
     images: [{ type: String }],
-    longDescription: { type: String, required: true },
     date: { type: Date, default: Date.now },
+    status: { type: String, default: "In Progress" },
+    tags: [{ type: String }],
+    what_it_does: { type: String },
+    features: [
+      {
+        title: { type: String },
+        description: { type: String },
+      },
+    ],
+    skills: [{ type: String }],
+    next_steps: [{ type: String }],
+    final_note: { type: String },
   },
-  { collection: 'project' }
+  { collection: "project" }
 );
 
-const Project = mongoose.model('Project', projectSchema);
+const Project = mongoose.model("Project", projectSchema);
 
-// Function to add a new project using Mongoose
-async function addNewProject() {
+// Function to import projects
+async function importProjectsToDatabase() {
   try {
     // Connect to MongoDB Atlas using Mongoose
     await mongoose.connect(Db, {
@@ -53,33 +44,26 @@ async function addNewProject() {
       useUnifiedTopology: true,
     });
 
-    // Create a new project instance
-    const newProject = new Project({
-      title: 'Atlas Project Title',
-      blurb: 'This is a short description of the project',
-      image: 'https://example.com/project-image.jpg',
-      video: 'https://example.com/project-video.mp4',
-      images: [
-        'https://example.com/image1.jpg',
-        'https://example.com/image2.jpg',
-      ],
-      longDescription: 'A detailed description of the project goes here.',
-      date: new Date(), // Optional; defaults to current date
-    });
+    console.log("Connected to MongoDB Atlas");
 
-    // Save the project to the database
-    await newProject.save();
-    console.log('Project successfully added to MongoDB Atlas');
+    // Insert multiple projects into the database
+    const existingProjects = await Project.find();
+    if (existingProjects.length === 0) {
+      await Project.insertMany(importProjects);
+      console.log("Projects successfully imported to MongoDB Atlas");
+    } else {
+      console.log("Projects already exist in the database");
+    }
   } catch (err) {
-    console.error('Error adding project to MongoDB Atlas:', err);
+    console.error("Error importing projects:", err);
   } finally {
     // Disconnect from Mongoose
     await mongoose.disconnect();
+    console.log("Disconnected from MongoDB Atlas");
   }
 }
 
-// Run both functions
+// Run the import function
 (async () => {
-  await listCollections(); // Lists collections
-  await addNewProject(); // Adds a new project
+  await importProjectsToDatabase();
 })();
