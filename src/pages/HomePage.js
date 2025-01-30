@@ -26,7 +26,9 @@ const HomePage = () => {
                 </button>
             </div>
 
-            <KeyProjects />
+            <section className="key-projects-section"></section>
+                <KeyProjects />
+            <section/>
 
             <Footer />
         </div>

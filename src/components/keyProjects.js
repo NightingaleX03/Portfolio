@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import samewise from "../images/samwise.png";
 import "./keyProjects.css";
-import "./carousal.js";
 
 const KeyProjects = () => {
-    return (
-        <div>
-        <div class="container">
-    
-            <div class="slide">
-    
-                
+  const slideRef = useRef(null);
+
+  const handleNext = () => {
+    const items = slideRef.current.querySelectorAll(".item");
+    slideRef.current.appendChild(items[0]);
+  };
+
+  const handlePrev = () => {
+    const items = slideRef.current.querySelectorAll(".item");
+    slideRef.current.prepend(items[items.length - 1]);
+  };
+
+  return (
+    <div className="container">
+      <div className="slide" ref={slideRef}>
                 <div class="item" style={{ backgroundImage: `url(${samewise})` }}>
                     <div class="content">
                         <div class="name">Switzerland</div>
@@ -56,13 +63,14 @@ const KeyProjects = () => {
     
             </div>
     
-            <div class="button">
-                <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
-                <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+            <div className="button">
+                <button className="prev" onClick={handlePrev}>
+                <i className="fa-solid fa-arrow-left"></i>
+                </button>
+                <button className="next" onClick={handleNext}>
+                <i className="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
-    
-        </div>
-
         </div>
     );
 };

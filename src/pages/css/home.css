@@ -33,3 +33,21 @@ body{
     background-color: #b271da;
 }
 
+.key-projects-section {
+    display: block;
+    margin-top: 40px;
+    padding: 20px;
+  }
+
+  .button-row::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .button-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
