@@ -3,6 +3,7 @@ import Intro from "../components/Intro";
 import "./css/home.css";
 import samwise from "../images/samwise2.0.png";
 import Footer from "../components/footer";
+import KeyProjects from "../components/keyProjects";
 
 const HomePage = () => {
     return (
@@ -24,6 +25,8 @@ const HomePage = () => {
                     Contact Me
                 </button>
             </div>
+
+            <KeyProjects />
 
             <Footer />
         </div>
