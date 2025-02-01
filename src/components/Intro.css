@@ -2,17 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
 
 
-:root{
-  --ckr-1: #9ed9dc;
-  --ckr-2: #89d1e1;
-  --ckr-3: #79c9e7;
-  --ckr-4: #6fbfee;
-  --ckr-5: #6fb3f3;
-  --ckr-6: #78a6f5;
-  --ckr-7: #8997f3;
-  --ckr-8: #9e85ea;
-  --ckr-9: #b271da;
-  --ckr-10: #c45ac4;
+:root {
+  --ckr-1: #456687;
+  --ckr-2: #4d678f;
+  --ckr-3: #586695;
+  --ckr-4: #65669a;
+  --ckr-5: #73649c;
+  --ckr-6: #82629d;
+  --ckr-7: #905f9b;
+  --ckr-8: #9f5c97;
+  --ckr-9: #ac5990;
+  --ckr-10: #b85687;
 }
 
 @property --gradient-angle{

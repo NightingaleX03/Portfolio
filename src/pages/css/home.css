@@ -1,25 +1,24 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
 
-body{
+body {
     background-color: #000;
 }
 
 .button-row {
     display: flex;
-    justify-content: space-between;
-    width: 95%;
-    gap: 100px;
+    justify-content: center;
+    gap: 30px;
     align-items: center;
-    margin-top: 100px;
-    margin: 0 auto;
+    margin-top: 50px;
+    padding: 30px;
+    flex-wrap: wrap;
 }
 
 .custom-button {
     flex-grow: 1;
     padding: 15px 0;
     font-size: 16px;
-    background-color: #c45ac4;
+    background-color: #ac5990;
     font-family: 'Baloo Bhaina 2', sans-serif;
     color: white;
     border: none;
@@ -30,24 +29,34 @@ body{
 }
 
 .custom-button:hover {
-    background-color: #b271da;
+    background-color: #65669a;
 }
 
 .key-projects-section {
-    display: block;
-    margin-top: 40px;
-    padding: 20px;
-  }
-
-  .button-row::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-
-  .button-row {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+    margin: 10px auto;
+    max-width: 100%;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
 
+
+.key-projects-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+
+.key-projects-section h2 {
+    color: #fff;
+    text-align: center;
+    font-family: 'Baloo Bhaina 2', sans-serif;
+}
+
+.key-projects-section p {
+    color: #ddd;
+    text-align: justify;
+    font-family: 'Baloo Bhaina 2', sans-serif;
+}
