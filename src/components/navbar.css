@@ -28,8 +28,7 @@
 }
 
 .nav-links a:hover{
-    /*color:#9e4040;*/
-    color: #5d7a8f;
+    color: #ac5990;
 }
 
 .nav-links a:hover::before {
