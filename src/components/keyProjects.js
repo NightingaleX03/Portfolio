@@ -13,8 +13,8 @@ const KeyProjects = () => {
   const handlePrev = () => {
     const items = slideRef.current.querySelectorAll(".item");
     slideRef.current.prepend(items[items.length - 1]);
-  };
-
+  }; 
+ 
   return (
     <div className="container">
       <div className="slide" ref={slideRef}>
