@@ -25,7 +25,7 @@
     width: 100%;
     padding: 15px 20px;
     font-size: 1rem;
-    border: 2px solid var(--primary-color);
+    border: 1px solid var(white);
     border-radius: 30px;
     outline: none;
     background-color: var(--background-color);
