@@ -27,10 +27,6 @@ const Project = () => {
                     <p>Content for left column here.</p>
                 </div>
                 <div className="right-column">
-                    <p>This is the right column, which takes up 2/3 of the page.</p>
-                    <p>Content for the right column here.</p>
-                    <br />
-                    {/* Display search results here */}
                     <div id="search-results" className="search-results">
                         <ProjectList filteredProjects={filteredProjects} />
                     </div>

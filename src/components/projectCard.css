@@ -1,0 +1,119 @@
+:root {
+    --ckr-1: #9ed9dc;
+    --ckr-2: #89d1e1;
+    --ckr-3: #79c9e7;
+    --ckr-4: #6fbfee;
+    --ckr-5: #6fb3f3;
+    --ckr-6: #78a6f5;
+    --ckr-7: #8997f3;
+    --ckr-8: #9e85ea;
+    --ckr-9: #b271da;
+    --ckr-10: #c45ac4;
+    --primary-color: #9dd9dc;
+    --background-color: #000000;
+    --text-color: #ffffff;
+  }
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.project-card {
+    background: black;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.project-image .image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.no-image {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.project-role {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 8px;
+    color: #8997f3;
+}
+
+.project-description {
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-top: 8px;
+    min-height: 60px;
+}
+
+.project-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.tool {
+    background: #000000;
+    padding: 5px 10px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.project-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    color: gray;
+    transition: color 0.2s;
+}
+
+.icon:hover {
+    color: black;
+}
+
+.no-projects {
+    grid-column: span 3;
+    text-align: center;
+    color: gray;
+    font-size: 1.2rem;
+}

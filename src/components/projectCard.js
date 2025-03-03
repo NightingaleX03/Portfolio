@@ -1,46 +1,52 @@
 import React from "react";
 import { Github, Link, Globe } from "lucide-react"; // Import icons
+import "./projectCard.css"; // Import CSS file
 
 const ProjectCard = ({ project }) => {
-  const { title, tools, links, photoCover } = project;
+  const { title, tools, links, photoCover, role, description } = project;
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4">
-      <h2 className="text-lg font-semibold text-gray-800 text-center">{title}</h2>
+    <div className="project-card">
+      {/* Title */}
+      <h2 className="project-title">{title}</h2>
       
       {/* Project Image */}
-      <div className="flex justify-center my-2">
+      <div className="project-image">
         {photoCover ? (
-          <img src={photoCover} alt={title} className="w-full h-40 object-cover rounded-md" />
+          <img src={photoCover} alt={title} className="image" />
         ) : (
-          <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-md">
-            <span className="text-gray-500">No Image</span>
-          </div>
+          <div className="no-image">No Image</div>
         )}
       </div>
 
+      {/* Role */}
+      <p className="project-role"><strong>Role:</strong> {role}</p>
+
+      {/* Description */}
+      <p className="project-description">{description}</p>
+
       {/* Tools */}
-      <div className="flex flex-wrap gap-2 my-2">
+      <div className="project-tools">
         {tools.map((tool, index) => (
-          <span key={index} className="bg-gray-200 px-2 py-1 rounded text-sm">{tool}</span>
+          <span key={index} className="tool">{tool}</span>
         ))}
       </div>
 
       {/* Links */}
-      <div className="flex justify-center gap-4 mt-3">
+      <div className="project-links">
         {links.github && (
           <a href={links.github} target="_blank" rel="noopener noreferrer">
-            <Github className="w-5 h-5 text-gray-600 hover:text-black" />
+            <Github className="icon" />
           </a>
         )}
         {links.devpost && (
           <a href={links.devpost} target="_blank" rel="noopener noreferrer">
-            <Link className="w-5 h-5 text-gray-600 hover:text-black" />
+            <Link className="icon" />
           </a>
         )}
         {links.demo && (
           <a href={links.demo} target="_blank" rel="noopener noreferrer">
-            <Globe className="w-5 h-5 text-gray-600 hover:text-black" />
+            <Globe className="icon" />
           </a>
         )}
       </div>
