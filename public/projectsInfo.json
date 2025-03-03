@@ -4,11 +4,11 @@
         "description": "This is my personal portfolio website. It is built using React and styled with Material-UI. It is a single page application that showcases my projects, skills, and contact information.",
         "tools": ["React", "JavaScript", "HTML", "CSS"],
         "links": {
-            "github": "",
+            "github": "https://github.com/NightingaleX03/personal-portfolio",
             "devpost": "",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/portfolio.png"
     },
 
     { "title": "RentEase", 
@@ -20,7 +20,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/rentEase.png"
     },
 
     { "title": "Note Ease",
@@ -33,7 +33,7 @@
             "devpost": "https://devpost.com/software/note-ease",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/noteEase.png"
     },
 
     { "title": "Nomore 404",
@@ -45,7 +45,7 @@
             "devpost": "https://devpost.com/software/nomore404",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/nomore404.png"
     },
 
     { "title": "3udoku-shuffle",
@@ -57,7 +57,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/3sudoku-shuffle.png"
     },
     { "title": "Mealer: Food Delivery",
         "role": "Front-end Developer",
@@ -68,7 +68,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/mealer.png"
     },
     { "title": "Sakura Sound",
         "role": "Web Developer",
@@ -79,7 +79,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/sakuraSound.png"
     },
     { "title": "Syntax Sisters",
         "role": "Project Manager and Developer",
@@ -90,10 +90,10 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/syntaxSisters.png"
     },
     { "title": "CareMate",
-        "role": "AI and Backend Developer",
+        "role": "AI and Back-end Developer",
         "description": "AI-powered health and wellness companion designed to support seniors in their daily lives so they stay active and independent!",
         "tools": ["Streamlit", "python", "mediapipe", "Cohere AI", "css"],
         "links": {
@@ -101,10 +101,10 @@
             "devpost": "https://dorahacks.io/buidl/22897",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/CareMate.png"
     },
     { "title": "EcoGrocer",
-        "role": "Full Developer",
+        "role": "Full Stack Developer",
         "description": "EcoGrocer helps combat the overall goal of reducing food wastage while also providing a secondary solution of helping the homeless by directing app users to possible food bank locations nearby (in hopes of donating non-perishable foods).",
         "tools": ["AuthO", "MongoDB", "Google ML Kit", "Google Maps API", "React"],
         "links": {
@@ -112,6 +112,6 @@
             "devpost": "https://devpost.com/software/eco-grocer",
             "demo": ""
         },
-        "photoCover": ""
+        "photoCover": "./projectsImages/EcoGrocer.png"
     }
 ]

@@ -1,31 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from '../components/searchBar';
 import './css/project.css'; 
 import ProjectList from "../components/projectList";
 
 const Project = () => {
-    const [filteredProjects, setFilteredProjects] = useState([]);
+    const [allProjects, setAllProjects] = useState([]);
+    const [filteredProjects, setFilteredProjects] = useState(allProjects);
+    const [selectedRoles, setSelectedRoles] = useState({
+        'Back-end Developer': false,
+        'Project Manager': false,
+        'Full Stack Developer': false,
+        'Web Developer': false,
+        'Front-end Developer': false,
+    });
 
-    const handleFilteredProjects = (filtered) => {
-        setFilteredProjects(filtered);
+    useEffect(() => {
+        const fetchData = async () => {
+            const projectsData = [
+                { title: "Project A", role: "Back-end Developer" },
+                { title: "Project B", role: "Project Manager" },
+                { title: "Project C", role: "Full Stack Developer" },
+                { title: "Project D", role: "Web Developer" },
+                { title: "Project E", role: "Front-end Developer" },
+            ];
+            setAllProjects(projectsData);
+        };
+
+        fetchData();
+    }, []);
+
+    const handleRoleChange = (e) => {
+        const { name, checked } = e.target;
+        setSelectedRoles(prevState => ({
+            ...prevState,
+            [name]: checked,
+        }));
     };
+
+    useEffect(() => {
+        const selectedRoleKeys = Object.keys(selectedRoles).filter(role => selectedRoles[role]);
+
+        const filteredData = allProjects.filter(project => selectedRoleKeys.includes(project.role));
+
+        setFilteredProjects(filteredData);
+    }, [selectedRoles, allProjects]);
 
     return (
         <div className="project-container">
-            <h1 class ="project-header">
-                List of <span class="typing-effect">Projects</span>
+            <h1 className="project-header">
+                List of <span className="typing-effect">Projects</span>
             </h1>
-            <br></br>
+            <br />
             <div className="search-container">
-                <SearchBar onFilteredProjects={handleFilteredProjects} />
+                <SearchBar onFilteredProjects={setFilteredProjects} />
             </div>
 
-            <br></br>
+            <br />
             <div className="columns">
+            <br></br>
                 <div className="left-column">
-                    <p>This is the left column, which takes up 1/3 of the page.</p>
-                    <p>Content for left column here.</p>
+                    <br></br>
+                    <h3>Filters</h3>
+                    <br></br>
+
+                    {/* Role Filters (Checkboxes) */}
+                    <div className="filter-option">
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="Back-end Developer"
+                                checked={selectedRoles['Back-end Developer']}
+                                onChange={handleRoleChange}
+                            />
+                            &emsp;Back-end Developer
+                        </label>
+                        <br />
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="Project Manager"
+                                checked={selectedRoles['Project Manager']}
+                                onChange={handleRoleChange}
+                            />
+                            &emsp;Project Manager
+                        </label>
+                        <br />
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="Full Stack Developer"
+                                checked={selectedRoles['Full Stack Developer']}
+                                onChange={handleRoleChange}
+                            />
+                            &emsp;Full Stack Developer
+                        </label>
+                        <br />
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="Web Developer"
+                                checked={selectedRoles['Web Developer']}
+                                onChange={handleRoleChange}
+                            />
+                            &emsp;Web Developer
+                        </label>
+                        <br />
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="Front-end Developer"
+                                checked={selectedRoles['Front-end Developer']}
+                                onChange={handleRoleChange}
+                            />
+                            &emsp;Front-end Developer
+                        </label>
+                    </div>
                 </div>
+
                 <div className="right-column">
                     <div id="search-results" className="search-results">
                         <ProjectList filteredProjects={filteredProjects} />

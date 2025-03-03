@@ -1,5 +1,4 @@
 import React from "react";
-import { Github, Link, Globe } from "lucide-react"; // Import icons
 import "./projectCard.css"; // Import CSS file
 
 const ProjectCard = ({ project }) => {
@@ -36,17 +35,17 @@ const ProjectCard = ({ project }) => {
       <div className="project-links">
         {links.github && (
           <a href={links.github} target="_blank" rel="noopener noreferrer">
-            <Github className="icon" />
+            <img src={require("./../images/github.png")} alt="github"/>
           </a>
         )}
         {links.devpost && (
           <a href={links.devpost} target="_blank" rel="noopener noreferrer">
-            <Link className="icon" />
+            <img src={require("./../images/link.png")} alt="Devpost"/>
           </a>
         )}
         {links.demo && (
           <a href={links.demo} target="_blank" rel="noopener noreferrer">
-            <Globe className="icon" />
+            <img src={require("./../images/link.png")} alt="Demo"/>
           </a>
         )}
       </div>
