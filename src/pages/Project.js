@@ -17,11 +17,11 @@ const Project = () => {
     useEffect(() => {
         const fetchData = async () => {
             const projectsData = [
-                { title: "Project A", role: "Back-end Developer" },
-                { title: "Project B", role: "Project Manager" },
-                { title: "Project C", role: "Full Stack Developer" },
-                { title: "Project D", role: "Web Developer" },
-                { title: "Project E", role: "Front-end Developer" },
+                { title: "Project A", type: "Back-end Developer" },
+                { title: "Project B", type: "Project Manager" },
+                { title: "Project C", type: "Full Stack Developer" },
+                { title: "Project D", type: "Web Developer" },
+                { title: "Project E", type: "Front-end Developer" },
             ];
             setAllProjects(projectsData);
         };

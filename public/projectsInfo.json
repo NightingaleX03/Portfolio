@@ -1,6 +1,7 @@
 [
     { "title": "React Portfolio",
         "role": "Full Stack Developer",
+        "type" : ["Full Stack Developer"],
         "description": "This is my personal portfolio website. It is built using React and styled with Material-UI. It is a single page application that showcases my projects, skills, and contact information.",
         "tools": ["React", "JavaScript", "HTML", "CSS"],
         "links": {
@@ -13,6 +14,7 @@
 
     { "title": "RentEase", 
         "role": "Back-end Developer",
+        "type" : ["Back-end Developer"],
         "description": "A full-stack application using Python and MERN stack to facilitate smooth interactions between homeowners and homebuyers.",
         "tools": ["python", "css", "GenAI", "React", "Node.js"],
         "links": {
@@ -24,7 +26,8 @@
     },
 
     { "title": "Note Ease",
-        "role": "Full-stack Developer",
+        "role": "Full Stack Developer",
+        "type" : ["Full Stack Developer"],
         "description": "AI driven note taking application utilizing Google Cloud Speech-To-Text API and TensorFLow to generate real-time transcription, creating an immersive note taking experience through hand gesture formatting",
         "tools": ["TensorFlow", "Google Cloud", "React", "Node.js", "MongoDB", "Express", "Google Gemini", "JavaScript", "Google Cloud Speech-To-Text API"],
         "links": {
@@ -37,7 +40,8 @@
     },
 
     { "title": "Nomore 404",
-        "role": "Full-stack Developer and AI Integration",
+        "role": "Full Stack Developer and AI Integration",
+        "type" : ["Full Stack Developer", "AI Integration"],
         "description": "AI powered platform build with Streamlit, PostgreSQL, and Cohere AI providing an algorithm analysis solution for developers Job Search",
         "tools": ["Streamlit", "PostgreSQL", "Cohere AI", "Python", "css", "GenAI"],
         "links": {
@@ -50,6 +54,7 @@
 
     { "title": "3udoku-shuffle",
         "role": "Web Developer",
+        "type" : ["Web Developer"],
         "description": "A website for game dev startup team size of 3 where they've created a unique version of 3 way sudoku",
         "tools": ["Html", "css", "JavaScritp"],
         "links": {
@@ -61,6 +66,7 @@
     },
     { "title": "Mealer: Food Delivery",
         "role": "Front-end Developer",
+        "type" : ["Front-end Developer"],
         "description": "Developed a food delivery app in Android Studio using Java, ensuring seamless user experience for both restaurant owners and customers",
         "tools": ["Android Studio", "Java", "Google Maps API", "Firebase"],
         "links": {
@@ -72,6 +78,7 @@
     },
     { "title": "Sakura Sound",
         "role": "Web Developer",
+        "type" : ["Web Developer"],
         "description": "Sakura Sound a webpage dedicated to 4 artists of my choosing, One Ok Rock, Blue Encount, Survive Said the Prophet, and MY FIRST STORY",
         "tools": ["JavaScript", "HTML", "CSS"],
         "links": {
@@ -83,6 +90,7 @@
     },
     { "title": "Syntax Sisters",
         "role": "Project Manager and Developer",
+        "type" : ["Developer", "Project Manager"],
         "description": "On-going Project with a team of 6 members",
         "tools": ["python", "flet", "MySQL"],
         "links": {
@@ -94,6 +102,7 @@
     },
     { "title": "CareMate",
         "role": "AI and Back-end Developer",
+        "type" : ["Back-end Developer", "AI Integration"],
         "description": "AI-powered health and wellness companion designed to support seniors in their daily lives so they stay active and independent!",
         "tools": ["Streamlit", "python", "mediapipe", "Cohere AI", "css"],
         "links": {
@@ -105,6 +114,7 @@
     },
     { "title": "EcoGrocer",
         "role": "Full Stack Developer",
+        "type" : ["Full Stack Developer"],
         "description": "EcoGrocer helps combat the overall goal of reducing food wastage while also providing a secondary solution of helping the homeless by directing app users to possible food bank locations nearby (in hopes of donating non-perishable foods).",
         "tools": ["AuthO", "MongoDB", "Google ML Kit", "Google Maps API", "React"],
         "links": {
