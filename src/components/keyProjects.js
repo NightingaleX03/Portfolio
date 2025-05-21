@@ -31,7 +31,9 @@ const KeyProjects = () => {
                                 </ul>
                             </p>
                         </div>
-                        <button>See More</button>
+                        <a href="https://github.com/gurmehakkaur/noMore404" target="_blank" rel="noopener noreferrer">
+                            <button>See More</button>
+                        </a>
                     </div>
                 </div>
                 <div class="item" style={{ backgroundImage: `url(${backgrounddd})` }}>
@@ -46,7 +48,9 @@ const KeyProjects = () => {
                                 </ul>
                             </p>
                         </div>
-                        <button>See More</button>
+                        <a href="https://github.com/SharuSiv/GDSC_Hacks2024" target="_blank" rel="noopener noreferrer">
+                            <button>See More</button>
+                        </a>
                     </div>
                 </div>
                 <div class="item" style={{ backgroundImage: `url(${backgrounddd})` }}>
@@ -61,7 +65,9 @@ const KeyProjects = () => {
                                 </ul>
                             </p>
                         </div>
-                        <button>See More</button>
+                        <a href="https://renteasenow.netlify.app/?" target="_blank" rel="noopener noreferrer">
+                            <button>See More</button>
+                        </a>
                     </div>
                 </div>
                 <div class="item" style={{ backgroundImage: `url(${backgrounddd})` }}>
@@ -75,7 +81,9 @@ const KeyProjects = () => {
                                 </ul>
                             </p>
                         </div>
-                        <button>See More</button>
+                        <a href="https://github.com/NightingaleX03/3sudoku-shuffle" target="_blank" rel="noopener noreferrer">
+                            <button>See More</button>
+                        </a>
                     </div>
                 </div>
                 <div class="item" style={{ backgroundImage: `url(${backgrounddd})` }}>
@@ -90,7 +98,9 @@ const KeyProjects = () => {
                                 </ul>
                             </p>
                         </div>
-                        <button>See More</button>
+                        <a href="https://github.com/SEG-2105-Group/Mealer" target="_blank" rel="noopener noreferrer">
+                            <button>See More</button>
+                        </a>
                     </div>
                 </div>
     

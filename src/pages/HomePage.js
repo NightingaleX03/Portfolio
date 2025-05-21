@@ -13,7 +13,7 @@ const HomePage = () => {
                     Project
                 </button>
                 <button className="custom-button">
-                    Blog Page
+                    CSCI 1063
                 </button>
                 <button className="custom-button">
                     Contact Me

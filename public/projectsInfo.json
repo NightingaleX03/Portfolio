@@ -16,7 +16,7 @@
         "description": "A full-stack application using Python and MERN stack to facilitate smooth interactions between homeowners and homebuyers.",
         "tools": ["python", "css", "GenAI", "React", "Node.js"],
         "links": {
-            "github": "",
+            "github": "https://github.com/khaleedcodes/RentEase",
             "devpost": "",
             "demo": ""
         },
@@ -113,5 +113,16 @@
             "demo": ""
         },
         "photoCover": "./projectsImages/EcoGrocer.png"
+    },
+    { "title": "Focus Flow: GenAI Application",
+        "role": "Front-end Developer",
+        "description": "A full-stack webapp empowered by the state-of-the-art AI model which is able to give you a reminder to take a break essentially when you are stressed or down",
+        "tools": ["React", "Flask API", "MongoDB", "CNN Architecture", "Tensorflow", "matplotlib", "python"],
+        "links": {
+            "github": "https://github.com/kevinrussel/GenAI",
+            "devpost": "https://devpost.com/software/focus-flow-fq8vui",
+            "demo": "https://youtu.be/FV6rjQ0QwGI"
+        },
+        "photoCover": "./projectsImages/focusflow.png"
     }
 ]

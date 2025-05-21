@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/navbar'; // Navbar component
 import { BrowserRouter as Router, useRoutes} from 'react-router-dom';
+import "./index.css";
 
 // Pages
 import Projects from './pages/Project'; // Projects page
@@ -14,6 +15,7 @@ const AppRoutes = () => {
         { path: "/projects", element: <Projects /> },
         { path: "/about", element: <AboutPage /> },
         { path: "/contact", element: <Contact /> },
+
     ]);
 };
 
