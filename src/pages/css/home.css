@@ -1,5 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
 
+:root {
+  --ckr-1: #9ed9dc;
+  --ckr-2: #89d1e1;
+  --ckr-3: #79c9e7;
+  --ckr-4: #6fbfee;
+  --ckr-5: #6fb3f3;
+  --ckr-6: #78a6f5;
+  --ckr-7: #8997f3;
+  --ckr-8: #9e85ea;
+  --ckr-9: #b271da;
+  --ckr-10: #c45ac4;
+}
+
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
 body {
     background-color: #000;
 }
@@ -19,7 +47,7 @@ body {
     flex-grow: 1;
     padding: 15px 0;
     font-size: 16px;
-    background-color: #ac5990;
+    background-color: var(--ckr-9);
     font-family: 'Baloo Bhaina 2', sans-serif;
     color: white;
     border: none;
@@ -30,26 +58,39 @@ body {
 }
 
 .custom-button:hover {
-    background-color: #65669a;
+    background-color: var(--ckr-4);
 }
 
 .key-projects-section {
-    display: flex;
+    position: relative;
     margin: 5px auto;
     max-width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 2px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in-out;
 }
 
+.key-projects-section::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    background: conic-gradient(from var(--gradient-angle), 
+        var(--ckr-1), var(--ckr-2), var(--ckr-3), var(--ckr-4), var(--ckr-5), 
+        var(--ckr-6), var(--ckr-7), var(--ckr-8), var(--ckr-9), var(--ckr-10), 
+        var(--ckr-9), var(--ckr-8), var(--ckr-7), var(--ckr-6), var(--ckr-5), 
+        var(--ckr-4), var(--ckr-3), var(--ckr-2), var(--ckr-1));
+    animation: rotation 20s linear infinite;
+    border-radius: 17px;
+}
+
+.key-projects-section:hover::before {
+    animation: rotation 10s linear infinite;
+}
 
 .key-projects-section:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
-
 
 .key-projects-section h2 {
     color: #fff;

@@ -1,7 +1,24 @@
 import React from "react";
 import ProjectCard from "./projectCard";
 
-const ProjectList = ({ filteredProjects }) => {
+interface Project {
+  title: string;
+  tools: string[];
+  links: {
+    github?: string;
+    devpost?: string;
+    demo?: string;
+  };
+  photoCover?: string;
+  role: string;
+  description: string;
+}
+
+interface ProjectListProps {
+  filteredProjects: Project[];
+}
+
+const ProjectList: React.FC<ProjectListProps> = ({ filteredProjects }) => {
   return (
     <div className="project-grid">
       {filteredProjects.length > 0 ? (
@@ -15,4 +32,4 @@ const ProjectList = ({ filteredProjects }) => {
   );
 };
 
-export default ProjectList;
+export default ProjectList; 

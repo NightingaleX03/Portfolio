@@ -3,10 +3,10 @@ import { FaInstagram, FaGithub, FaLinkedin, FaDev } from "react-icons/fa";
 import "./footer.css";
 import samewise from "../images/samwise2.0.png";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <div className="footer">
-        <br></br>
+      <br />
       <div className="footer-container">
         {/* Left Column */}
         <div className="footer-left">
@@ -58,4 +58,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer; 

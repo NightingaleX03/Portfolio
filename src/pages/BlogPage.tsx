@@ -1,19 +1,29 @@
 import React from "react";
-import "./css/blogpage.css"; // Import CSS file
+import "./css/blogpage.css";
 
-const posts = [
+interface BlogPost {
+  id: number;
+  type: "linkedin" | "text";
+  embedUrl?: string;
+  height?: string;
+  width?: string;
+  title?: string;
+  content?: string;
+}
+
+const posts: BlogPost[] = [
   {
     id: 1,
     type: "linkedin",
     embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:7165799107695955968",
-    height: "h-[1095px]", // Adjust height dynamically if needed
+    height: "h-[1095px]",
     width: "w-[504px]",
   },
   {
     id: 2,
     type: "linkedin",
     embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:7175673134753230848",
-    height: "h-[986px]", // Adjust height dynamically if needed
+    height: "h-[986px]",
     width: "w-[504px]",
   },
   {
@@ -25,7 +35,7 @@ const posts = [
   },
 ];
 
-const BlogSection = () => {
+const BlogSection: React.FC = () => {
   return (
     <div className="blog-container">
       {posts.map((post) => (
@@ -49,4 +59,4 @@ const BlogSection = () => {
   );
 };
 
-export default BlogSection;
+export default BlogSection; 

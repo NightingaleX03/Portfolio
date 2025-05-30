@@ -1,8 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll(".card");
+import { useEffect } from 'react';
+
+const TiltEffect: React.FC = () => {
+  useEffect(() => {
+    const cards = document.querySelectorAll<HTMLElement>(".card");
   
     cards.forEach((card) => {
-      card.addEventListener("mousemove", (e) => {
+      card.addEventListener("mousemove", (e: MouseEvent) => {
         const cardRect = card.getBoundingClientRect();
         const x = e.clientX - cardRect.left;
         const y = e.clientY - cardRect.top;
@@ -20,5 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = "rotateX(0) rotateY(0)";
       });
     });
-  });
-  
+
+    return () => {
+      cards.forEach((card) => {
+        card.removeEventListener("mousemove", () => {});
+        card.removeEventListener("mouseleave", () => {});
+      });
+    };
+  }, []);
+
+  return null;
+};
+
+export default TiltEffect; 

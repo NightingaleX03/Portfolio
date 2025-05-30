@@ -84,17 +84,17 @@
         "links": {
             "github": "https://github.com/NightingaleX03/SakuraSound",
             "devpost": "",
-            "demo": ""
+            "demo": "https://www.youtube.com/watch?v=g7hemQpFnPU&feature=youtu.be"
         },
         "photoCover": "./projectsImages/sakuraSound.png"
     },
     { "title": "Syntax Sisters",
         "role": "Project Manager and Developer",
         "type" : ["Developer", "Project Manager"],
-        "description": "On-going Project with a team of 6 members",
+        "description": "Computer Project Class application developed by a team of 6 aspiring CS undergrad students. A cross-platform calendar app built with Python and Flet",
         "tools": ["python", "flet", "MySQL"],
         "links": {
-            "github": "",
+            "github": "https://github.com/SyntaxSisters/Calendar",
             "devpost": "",
             "demo": ""
         },

@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from '../images/logonav.png';
 import './navbar.css';
-const Navbar = () => {
+
+const Navbar: React.FC = () => {
     return (
         <nav className="navbar">
             <div className="logo">
@@ -16,4 +17,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Navbar; 
