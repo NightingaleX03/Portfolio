@@ -1,15 +1,15 @@
 :root {
-    --ckr-1: #456687;
-    --ckr-2: #4d678f;
-    --ckr-3: #586695;
-    --ckr-4: #65669a;
-    --ckr-5: #73649c;
-    --ckr-6: #82629d;
-    --ckr-7: #905f9b;
-    --ckr-8: #9f5c97;
-    --ckr-9: #ac5990;
-    --ckr-10: #b85687;
-  }
+    --ckr-1: #68cecb;
+    --ckr-2: #68cecb;
+    --ckr-3: #68cecb;
+    --ckr-4: #68cecb;
+    --ckr-5: #ce686b;
+    --ckr-6: #ce686b;
+    --ckr-7: #ce689e;
+    --ckr-8: #ce689e;
+    --ckr-9: #ce9868;
+    --ckr-10: #ce9868;
+}
   
 
 .project-grid {
@@ -23,10 +23,10 @@
 }
 
 .project-card {
-    background-color: #000000;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--border-color);
     width: 100%;
     max-width: 350px;
     text-align: center;
@@ -39,7 +39,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: var(--text-color);
 }
 
 .project-image .image {
@@ -56,7 +56,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: gray;
+    color: var(--text-color);
+    opacity: 0.5;
     font-size: 1rem;
     border-radius: 8px;
 }
@@ -65,12 +66,12 @@
     font-size: 1rem;
     font-weight: 500;
     margin-top: 8px;
-    color: #8997f3;
+    color: var(--text-secondary);
 }
 
 .project-description {
     font-size: 0.9rem;
-    color: #ffffff;
+    color: var(--text-color);
     margin-top: 8px;
     min-height: 60px;
 }
@@ -84,11 +85,12 @@
 }
 
 .tool {
-    background: #000000;
+    background: var(--card-bg);
     padding: 5px 10px;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 0.8rem;
+    color: var(--text-color);
 }
 
 .project-links {
@@ -107,7 +109,8 @@
 .no-projects {
     grid-column: span 3;
     text-align: center;
-    color: gray;
+    color: var(--text-color);
+    opacity: 0.5;
     font-size: 1.2rem;
 }
 
@@ -152,7 +155,7 @@
   .project-card:hover::before,
   .project-card:hover::after {
       transform: scale(1.005);
-      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 5px 5px var(--border-color);
       opacity: 1;
   }
 
@@ -161,7 +164,7 @@
     height: 24px;
     object-fit: contain;
     transition: transform 0.2s ease-in-out;
-    filter: invert(1) brightness(1000%);
+    filter: var(--icon-filter);
   }
   
   .project-links img:hover {

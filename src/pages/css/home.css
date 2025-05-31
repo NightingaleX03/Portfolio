@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
 
 :root {
-  --ckr-1: #9ed9dc;
-  --ckr-2: #89d1e1;
-  --ckr-3: #79c9e7;
-  --ckr-4: #6fbfee;
-  --ckr-5: #6fb3f3;
-  --ckr-6: #78a6f5;
-  --ckr-7: #8997f3;
-  --ckr-8: #9e85ea;
-  --ckr-9: #b271da;
-  --ckr-10: #c45ac4;
+  --ckr-1: #68cecb;
+  --ckr-2: #68cecb;
+  --ckr-3: #68cecb;
+  --ckr-4: #68cecb;
+  --ckr-5: #ce686b;
+  --ckr-6: #ce686b;
+  --ckr-7: #ce689e;
+  --ckr-8: #ce689e;
+  --ckr-9: #ce9868;
+  --ckr-10: #ce9868;
 }
 
 @property --gradient-angle {
@@ -29,7 +29,8 @@
 }
 
 body {
-    background-color: #000;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .button-row {
@@ -47,18 +48,20 @@ body {
     flex-grow: 1;
     padding: 15px 0;
     font-size: 16px;
-    background-color: var(--ckr-9);
+    background-color: var(--card-bg);
     font-family: 'Baloo Bhaina 2', sans-serif;
-    color: white;
-    border: none;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
 .custom-button:hover {
-    background-color: var(--ckr-4);
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border-color: var(--primary-color);
 }
 
 .key-projects-section {
@@ -68,6 +71,8 @@ body {
     padding: 2px;
     border-radius: 15px;
     transition: all 0.3s ease-in-out;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
 }
 
 .key-projects-section::before {
@@ -82,10 +87,13 @@ body {
         var(--ckr-4), var(--ckr-3), var(--ckr-2), var(--ckr-1));
     animation: rotation 20s linear infinite;
     border-radius: 17px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .key-projects-section:hover::before {
     animation: rotation 10s linear infinite;
+    opacity: 1;
 }
 
 .key-projects-section:hover {
@@ -93,13 +101,21 @@ body {
 }
 
 .key-projects-section h2 {
-    color: #fff;
+    color: var(--text-color);
     text-align: center;
     font-family: 'Baloo Bhaina 2', sans-serif;
 }
 
 .key-projects-section p {
-    color: #ddd;
+    color: var(--text-color);
+    opacity: 0.8;
     text-align: justify;
     font-family: 'Baloo Bhaina 2', sans-serif;
+}
+
+/* Home container */
+.home-container {
+    min-height: 100vh;
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease;
 }

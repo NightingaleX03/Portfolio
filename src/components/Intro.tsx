@@ -31,24 +31,25 @@ const Intro = () => {
             about new technologies and creating innovative solutions. <br /> <br />
             <span>Fun Fact: </span>In my free time, I enjoy playing video games, stargazing, and volunteering.
           </p>
-          <div className="social-links">
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-              <FaGithub />
-            </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin />
-            </a>
-            <a href="https://leetcode.com/yourusername" target="_blank" rel="noopener noreferrer">
-              <SiLeetcode />
-            </a>
-            <a href="mailto:your.email@example.com">
-              <FaEnvelope />
-            </a>
-          </div>
         </div>
         <div className="card-right">
           <img src={myself} alt="Profile" className="card-image" />
         </div>
+      </div>
+
+      <div className="social-links">
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+          <FaGithub />
+        </a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin />
+        </a>
+        <a href="https://leetcode.com/yourusername" target="_blank" rel="noopener noreferrer">
+          <SiLeetcode />
+        </a>
+        <a href="mailto:your.email@example.com">
+          <FaEnvelope />
+        </a>
       </div>
 
       <div className="skills-container">

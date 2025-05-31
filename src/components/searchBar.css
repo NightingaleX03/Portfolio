@@ -12,6 +12,9 @@
     --primary-color: #9dd9dc;
     --background-color: #000000;
     --text-color: #ffffff;
+    --border-color: #ffffff;
+    --card-bg: #ffffff;
+    --text-accent: #ff0000;
   }
   
   .search-container {
@@ -25,16 +28,22 @@
     width: 100%;
     padding: 15px 20px;
     font-size: 1rem;
-    border: 1px solid var(white);
+    border: 1px solid var(--border-color);
     border-radius: 30px;
     outline: none;
-    background-color: var(--background-color);
+    background-color: var(--card-bg);
     color: var(--text-color);
     z-index: 0;
     position: relative;
     font-family: 'Baloo Bhaina 2', sans-serif;
     box-sizing: border-box;
     text-align: left;
+    transition: all 0.3s ease;
+  }
+  
+  .search-bar:focus {
+    border-color: var(--text-accent);
+    box-shadow: 0 0 5px var(--text-accent);
   }
   
   .images-container {

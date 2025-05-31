@@ -1,57 +1,32 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Intro from "../components/Intro";
-import "./css/home.css";
 import Footer from "../components/footer";
 import KeyProjects from "../components/keyProjects";
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
 
-    const handleButtonClick = (action: string): void => {
-        switch(action) {
-            case 'project':
-                navigate('/projects');
-                break;
-            case 'csci':
-                navigate('/csci');
-                break;
-            case 'contact':
-                navigate('/contact');
-                break;
-            default:
-                break;
-        }
+    const handleButtonClick = (path: string) => {
+        navigate(path);
     };
 
     return (
         <div className="home-container">
             <Intro />
             <div className="button-row">
-                <button 
-                    className="custom-button"
-                    onClick={() => handleButtonClick('project')}
-                >
-                    Project
+                <button className="custom-button" onClick={() => handleButtonClick("/projects")}>
+                    View All Projects
                 </button>
-                <button 
-                    className="custom-button"
-                    onClick={() => handleButtonClick('csci')}
-                >
-                    CSCI 1063
-                </button>
-                <button 
-                    className="custom-button"
-                    onClick={() => handleButtonClick('contact')}
-                >
+                <button className="custom-button" onClick={() => handleButtonClick("/contact")}>
                     Contact Me
                 </button>
             </div>
-
-            <section className="key-projects-section">
+            <div className="key-projects-section">
+                <h2>Key Projects</h2>
+                <p>Here are some of my notable projects that showcase my skills and experience.</p>
                 <KeyProjects />
-            </section>
-
+            </div>
             <Footer />
         </div>
     );
