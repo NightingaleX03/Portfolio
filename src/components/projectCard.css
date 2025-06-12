@@ -23,95 +23,220 @@
 }
 
 .project-card {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px var(--border-color);
-    width: 100%;
-    max-width: 350px;
-    text-align: center;
-    position: relative;
-    overflow: visible;
-    transition: transform 0.2s ease-in-out;
+    background-color: var(--card-bg) !important;
+    border-radius: 20px !important;
+    padding: 2px !important;
+    box-shadow: 0 4px 16px rgba(104, 206, 203, 0.10) !important;
+    width: 100% !important;
+    max-width: 370px !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: visible !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    border: 1px solid var(--border-color) !important;
 }
 
-.project-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--text-color);
+.project-card::before,
+.project-card::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    z-index: -1;
+    background: none;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.project-image .image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    animation: pop-up-down 2s infinite ease-in-out;
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
+    border-color: #b2bec3;
 }
 
-.no-image {
+.project-content {
+    background: var(--card-bg) !important;
+    border-radius: 18px !important;
+    height: 100% !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 1 !important;
+    padding: 40px 30px 30px 30px !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid var(--border-color) !important;
+    font-family: 'Baloo Bhaina 2', sans-serif !important;
+}
+
+.project-image {
     width: 100%;
-    height: 200px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    background: #222;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-color);
-    opacity: 0.5;
-    font-size: 1rem;
-    border-radius: 8px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-title {
+    font-family: 'Baloo Bhaina 2', sans-serif !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: var(--text-color) !important;
+    margin-bottom: 10px !important;
+    letter-spacing: 0.5px !important;
+    text-align: center !important;
+    transition: color 0.3s !important;
 }
 
 .project-role {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-top: 8px;
-    color: var(--text-secondary);
+    font-family: 'Baloo Bhaina 2', sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    color: var(--text-accent) !important;
+    font-style: italic !important;
+    margin: 2px 0 6px 0 !important;
+    text-align: center !important;
+    opacity: 0.7 !important;
 }
 
 .project-description {
-    font-size: 0.9rem;
-    color: var(--text-color);
-    margin-top: 8px;
-    min-height: 60px;
+    font-family: 'Baloo Bhaina 2', sans-serif !important;
+    font-size: 1.05rem !important;
+    color: var(--text-color) !important;
+    opacity: 0.95 !important;
+    margin-bottom: 18px !important;
+    line-height: 1.7 !important;
+    text-align: center !important;
+    letter-spacing: 0.1px !important;
 }
 
 .project-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    justify-content: center;
-    margin-top: 10px;
+    font-family: 'Baloo Bhaina 2', sans-serif !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin-bottom: 18px !important;
 }
 
 .tool {
-    background: var(--card-bg);
-    padding: 5px 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 0.8rem;
-    color: var(--text-color);
+    font-family: 'Baloo Bhaina 2', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: var(--text-secondary) !important;
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 20px !important;
+    padding: 7px 16px !important;
+    margin: 0 2px !important;
+    transition: background 0.2s, color 0.2s, border 0.2s !important;
+}
+
+.tool:hover {
+    background: var(--text-secondary) !important;
+    color: var(--card-bg) !important;
+    border-color: var(--text-secondary) !important;
 }
 
 .project-links {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    padding-top: 15px !important;
+    border-top: 1px solid var(--text-accent) !important;
+    transition: border-color 0.3s ease !important;
+}
+
+.project-card:hover .project-links {
+    border-color: var(--text-accent) !important;
 }
 
 .project-links a {
-    border: none;
-    padding: 0;
-    display: inline-block;
+    color: var(--text-secondary) !important;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 8px !important;
+    border-radius: 50% !important;
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.project-links a:hover {
+    transform: translateY(-3px) scale(1.1) !important;
+    background: var(--text-accent) !important;
+    border-color: var(--text-accent) !important;
+    color: var(--card-bg) !important;
+}
+
+.project-links img {
+    width: 20px !important;
+    height: 20px !important;
+    object-fit: contain !important;
+    transition: transform 0.3s ease !important;
+    filter: brightness(0) invert(1) !important;
+}
+
+.project-links a:hover img {
+    transform: scale(1.2) !important;
 }
 
 .no-projects {
-    grid-column: span 3;
-    text-align: center;
-    color: var(--text-color);
-    opacity: 0.5;
-    font-size: 1.2rem;
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+    padding: 2rem !important;
+    color: var(--text-secondary) !important;
+    font-size: 1.2rem !important;
+    opacity: 0.7 !important;
+    font-family: 'Baloo Bhaina 2', sans-serif !important;
+    animation: fadeIn 0.5s ease !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+}
+
+/* Filter button style fix */
+.filter-button {
+    background: #f5f6fa !important;
+    color: #222f3e !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    font-family: 'Baloo Bhaina 2', sans-serif !important;
+    font-size: 1rem !important;
+    margin-bottom: 10px !important;
+    box-shadow: 0 2px 6px rgba(44, 62, 80, 0.04);
+    transition: all 0.2s;
+}
+.filter-button.active, .filter-button:hover {
+    background: #b2bec3 !important;
+    color: #222f3e !important;
+    border-color: #b2bec3 !important;
 }
 
 @property --gradient-angle {
@@ -129,44 +254,3 @@
         --gradient-angle: 360deg;
     }
 }
-
-.project-card::before,.project-card::after {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: inherit;
-    z-index: -1;
-    background: conic-gradient(from var(--gradient-angle), 
-      var(--ckr-1), var(--ckr-2), var(--ckr-3), var(--ckr-4), var(--ckr-5), var(--ckr-6), 
-      var(--ckr-7), var(--ckr-8), var(--ckr-9), var(--ckr-10), 
-      var(--ckr-9), var(--ckr-8), var(--ckr-7), var(--ckr-6), var(--ckr-5), 
-      var(--ckr-4), var(--ckr-3), var(--ckr-2), var(--ckr-1));
-    animation: rotation 20s linear infinite;
-    pointer-events: none;
-}
-
-  .project-card::after{
-    filter:blur(1rem);
-  }
-  
-  .project-card:hover::before,
-  .project-card:hover::after {
-      transform: scale(1.005);
-      box-shadow: 0 5px 5px var(--border-color);
-      opacity: 1;
-  }
-
-  .project-links img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    transition: transform 0.2s ease-in-out;
-    filter: var(--icon-filter);
-  }
-  
-  .project-links img:hover {
-    transform: scale(1.2);
-  }

@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
                 <img src={logo} alt="My Logo" />
             </div>
             <ul className="nav-links">
-                <li><a href="/">Welcome</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/projects">Projects</a></li>
                 <li><a href="/journey">My Journey</a></li>
                 <li><a href="/contact">Contact Me</a></li>

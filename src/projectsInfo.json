@@ -9,7 +9,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": "./projectsImages/portfolio.png"
+        "photoCover": "portfolio.png"
     },
 
     { "title": "RentEase", 
@@ -22,7 +22,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": "./projectsImages/rentEase.png"
+        "photoCover": "rentEase.png"
     },
 
     { "title": "Note Ease",
@@ -36,7 +36,7 @@
             "devpost": "https://devpost.com/software/note-ease",
             "demo": ""
         },
-        "photoCover": "./projectsImages/noteEase.png"
+        "photoCover": "noteEase.png"
     },
 
     { "title": "Nomore 404",
@@ -49,7 +49,7 @@
             "devpost": "https://devpost.com/software/nomore404",
             "demo": ""
         },
-        "photoCover": "./projectsImages/nomore404.png"
+        "photoCover": "nomore404.png"
     },
 
     { "title": "3udoku-shuffle",
@@ -62,7 +62,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": "./projectsImages/3sudoku-shuffle.png"
+        "photoCover": "3sudoku-shuffle.png"
     },
     { "title": "Mealer: Food Delivery",
         "role": "Front-end Developer",
@@ -74,7 +74,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": "./projectsImages/mealer.png"
+        "photoCover": "mealer.png"
     },
     { "title": "Sakura Sound",
         "role": "Web Developer",
@@ -86,7 +86,7 @@
             "devpost": "",
             "demo": "https://www.youtube.com/watch?v=g7hemQpFnPU&feature=youtu.be"
         },
-        "photoCover": "./projectsImages/sakuraSound.png"
+        "photoCover": "sakurasound.png"
     },
     { "title": "Syntax Sisters",
         "role": "Project Manager and Developer",
@@ -98,7 +98,7 @@
             "devpost": "",
             "demo": ""
         },
-        "photoCover": "./projectsImages/syntaxSisters.png"
+        "photoCover": "syntaxsisters.png"
     },
     { "title": "CareMate",
         "role": "AI and Back-end Developer",
@@ -110,7 +110,7 @@
             "devpost": "https://dorahacks.io/buidl/22897",
             "demo": ""
         },
-        "photoCover": "./projectsImages/CareMate.png"
+        "photoCover": "CareMate.png"
     },
     { "title": "EcoGrocer",
         "role": "Full Stack Developer",
@@ -122,10 +122,11 @@
             "devpost": "https://devpost.com/software/eco-grocer",
             "demo": ""
         },
-        "photoCover": "./projectsImages/EcoGrocer.png"
+        "photoCover": "EcoGrocer.png"
     },
     { "title": "Focus Flow: GenAI Application",
         "role": "Front-end Developer",
+        "type" : ["Full Stack Developer"],
         "description": "A full-stack webapp empowered by the state-of-the-art AI model which is able to give you a reminder to take a break essentially when you are stressed or down",
         "tools": ["React", "Flask API", "MongoDB", "CNN Architecture", "Tensorflow", "matplotlib", "python"],
         "links": {
@@ -133,6 +134,18 @@
             "devpost": "https://devpost.com/software/focus-flow-fq8vui",
             "demo": "https://youtu.be/FV6rjQ0QwGI"
         },
-        "photoCover": "./projectsImages/focusflow.png"
+        "photoCover": "focusflow.png"
+    },
+    { "title": "Startup Connect",
+        "role": "Full Stack Developer and Startup",
+        "type" : ["Full Stack Developer", "Startup"],
+        "description": "StartupConnect is a full-stack networking and recommendation platform tailored for early-stage startups and VC firms. It combines the power of community, AI-driven insights, gamification, and mental health support — all while helping startups improve investor appeal and VCs discover the most aligned opportunities.",
+        "tools": ["Angular", "typescript", "python", "Flask", "PostgreSQL", "scss", "Firebase Auth", "QuickBooks API", "AWS"],
+        "links": {
+            "github": "https://github.com/NightingaleX03/perplexity-hackathon",
+            "devpost": "https://devpost.com/software/startup-connect-06dqug",
+            "demo": "https://www.youtube.com/watch?v=x9600zRwCZg"
+        },
+        "photoCover": "startupConnect.png"
     }
 ]

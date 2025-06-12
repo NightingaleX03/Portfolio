@@ -17,6 +17,7 @@ interface Project {
   };
   photoCover?: string;
   role: string;
+  date?: string;
 }
 
 interface ProjectsData {
@@ -27,7 +28,9 @@ const Project: React.FC = () => {
   const [allProjects, setAllProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [selectedRoles, setSelectedRoles] = useState<{ [key: string]: boolean }>({});
+  const [selectedTech, setSelectedTech] = useState<{ [key: string]: boolean }>({});
   const [query, setQuery] = useState('');
+  const [sortOrder, setSortOrder] = useState<'oldest' | 'newest'>('newest');
 
   useEffect(() => {
     // Ensure all projects have a type field
@@ -42,8 +45,9 @@ const Project: React.FC = () => {
   // Unified filtering effect
   useEffect(() => {
     const selectedRoleKeys = Object.keys(selectedRoles).filter(role => selectedRoles[role]);
+    const selectedTechKeys = Object.keys(selectedTech).filter(tech => selectedTech[tech]);
 
-    const filtered = allProjects.filter(project => {
+    let filtered = allProjects.filter(project => {
       const matchesQuery = project.title.toLowerCase().includes(query.toLowerCase()) ||
         project.description.toLowerCase().includes(query.toLowerCase()) ||
         (project.tools || []).some(tool => tool.toLowerCase().includes(query.toLowerCase()));
@@ -51,11 +55,24 @@ const Project: React.FC = () => {
       const matchesRole = selectedRoleKeys.length === 0 ||
         (project.type && project.type.some(type => selectedRoleKeys.includes(type)));
 
-      return matchesQuery && matchesRole;
+      const matchesTech = selectedTechKeys.length === 0 ||
+        (project.tools && project.tools.some(tool => selectedTechKeys.includes(tool)));
+
+      return matchesQuery && matchesRole && matchesTech;
+    });
+
+    // Sort by date if available
+    filtered = filtered.slice().sort((a, b) => {
+      if (!a.date || !b.date) return 0;
+      if (sortOrder === 'oldest') {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      } else {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      }
     });
 
     setFilteredProjects(filtered);
-  }, [query, selectedRoles, allProjects]);
+  }, [query, selectedRoles, selectedTech, allProjects, sortOrder]);
 
   // Toggle role selection
   const handleRoleClick = (role: string) => {
@@ -65,31 +82,76 @@ const Project: React.FC = () => {
     }));
   };
 
+  // Toggle tech selection
+  const handleTechClick = (tech: string) => {
+    setSelectedTech((prev) => ({
+      ...prev,
+      [tech]: !prev[tech],
+    }));
+  };
+
+  // Handle sort order change
+  const handleSortToggle = () => {
+    setSortOrder((prev) => (prev === 'oldest' ? 'newest' : 'oldest'));
+  };
+
   const uniqueRoles = Array.from(
     new Set(allProjects.flatMap((project) => project.type || []))
   );
+  const techStackList = [
+    'React', 'python', 'GenAI', 'TensorFlow', 'Google Cloud', 'MongoDB', 'Express', 'Google Gemini', 'Streamlit',
+    'Cohere AI', 'Flet', 'Flask API', 'Firebase'
+  ];
+  const uniqueTech = techStackList;
 
   return (
     <div className="project-section">
-      <div className="search-container">
-        <SearchBar query={query} setQuery={setQuery} />
+      <div className="bubble-bg"></div>
+      <div className="project-header">
+        <h1 className="project-page-title">Projects</h1>
+        <p className="project-page-description">A showcase of my work, spanning various roles and technologies. <br />
+          <span style={{fontStyle: 'italic', color: '#aaa', opacity: 0.7}}>Browse by role, tech stack, or date.</span>
+        </p>
       </div>
-
+      <div className="search-sort-row">
+        <div className="search-bar-center">
+          <SearchBar query={query} setQuery={setQuery} />
+        </div>
+      </div>
       <div className="project-layout">
         <div className="filter-sidebar">
-          <div className="filter-buttons">
-            {uniqueRoles.map((role, index) => (
-              <button
-                key={index}
-                className={`filter-button ${selectedRoles[role] ? 'active' : ''}`}
-                onClick={() => handleRoleClick(role)}
-              >
-                {role}
-              </button>
-            ))}
+          <div className="filter-section">
+            <h3 className="filter-heading">Roles</h3>
+            <div className="filter-checkboxes filter-checkboxes-vertical">
+              {uniqueRoles.map((role, index) => (
+                <label key={index} className="filter-checkbox-label filter-checkbox-label-vertical">
+                  <input
+                    type="checkbox"
+                    checked={!!selectedRoles[role]}
+                    onChange={() => handleRoleClick(role)}
+                  />
+                  <span>{role}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+          <div style={{marginBottom: '2rem'}}></div>
+          <div className="filter-section">
+            <h3 className="filter-heading">Tech Stack</h3>
+            <div className="filter-checkboxes filter-checkboxes-grid-2col">
+              {uniqueTech.map((tech, index) => (
+                <label key={index} className="filter-checkbox-label filter-checkbox-label-grid">
+                  <input
+                    type="checkbox"
+                    checked={!!selectedTech[tech]}
+                    onChange={() => handleTechClick(tech)}
+                  />
+                  <span>{tech}</span>
+                </label>
+              ))}
+            </div>
           </div>
         </div>
-
         <div className="projects-grid">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
