@@ -1,11 +1,9 @@
 import React from 'react';
 import './Intro.css';
 import { useNavigate } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import { SiLeetcode } from 'react-icons/si';
+import { FaGithub, FaLinkedin, FaEnvelope, FaJava, FaPython, FaNodeJs, FaHtml5, FaCss3Alt, FaReact, FaAngular, FaVuejs, FaAndroid, FaGitAlt, FaDatabase, FaChartBar, FaWindows } from 'react-icons/fa';
+import { SiTypescript, SiMongodb, SiExpress, SiC, SiCplusplus, SiSpringboot, SiNextdotjs, SiOracle, SiFlask, SiJavascript } from 'react-icons/si';
 import { BsCodeSlash } from 'react-icons/bs';
-import { DiJavascript1, DiReact, DiNodejs, DiMongodb, DiPython, DiJava } from 'react-icons/di';
-import { SiTypescript, SiTailwindcss, SiExpress } from 'react-icons/si';
 import myself from "../images/myself.jpg";
 
 const Intro = () => {
@@ -45,7 +43,7 @@ const Intro = () => {
           <FaLinkedin />
         </a>
         <a href="https://leetcode.com/yourusername" target="_blank" rel="noopener noreferrer">
-          <SiLeetcode />
+          {/* Leetcode icon can be added here if desired */}
         </a>
         <a href="mailto:your.email@example.com">
           <FaEnvelope />
@@ -55,16 +53,98 @@ const Intro = () => {
       <div className="skills-container">
         <h2 className="skills-header">Tech Stack</h2>
         <div className="skills-icons">
-          <DiJavascript1 title="JavaScript" />
-          <SiTypescript title="TypeScript" />
-          <DiReact title="React" />
-          <DiNodejs title="Node.js" />
-          <SiExpress title="Express" />
-          <DiMongodb title="MongoDB" />
-          <SiTailwindcss title="Tailwind CSS" />
-          <DiPython title="Python" />
-          <DiJava title="Java" />
-          <BsCodeSlash title="Algorithms" />
+          <div className="skills-icon-wrapper">
+            <SiJavascript title="JavaScript" color="#f7df1e" />
+            <span className="skills-icon-tooltip">JavaScript</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiTypescript title="TypeScript" color="#3178c6" />
+            <span className="skills-icon-tooltip">TypeScript</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaReact title="React" color="#61dafb" />
+            <span className="skills-icon-tooltip">React</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaAngular title="Angular" color="#dd0031" />
+            <span className="skills-icon-tooltip">Angular</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaNodeJs title="Node.js" color="#3c873a" />
+            <span className="skills-icon-tooltip">Node.js</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiExpress title="Express" color="#000" />
+            <span className="skills-icon-tooltip">Express</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiMongodb title="MongoDB" color="#47a248" />
+            <span className="skills-icon-tooltip">MongoDB</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaPython title="Python" color="#3776ab" />
+            <span className="skills-icon-tooltip">Python</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaJava title="Java" color="#007396" />
+            <span className="skills-icon-tooltip">Java</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiC title="C" color="#00599c" />
+            <span className="skills-icon-tooltip">C</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiCplusplus title="C++" color="#00599c" />
+            <span className="skills-icon-tooltip">C++</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaHtml5 title="HTML5" color="#e34f26" />
+            <span className="skills-icon-tooltip">HTML5</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaCss3Alt title="CSS3" color="#1572b6" />
+            <span className="skills-icon-tooltip">CSS3</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaAndroid title="Android Studio" color="#3ddc84" />
+            <span className="skills-icon-tooltip">Android Studio</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaWindows title="Visual Studio" color="#5c2d91" />
+            <span className="skills-icon-tooltip">Visual Studio</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaChartBar title="Matplotlib" color="#11557c" />
+            <span className="skills-icon-tooltip">Matplotlib</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiSpringboot title="Spring Boot" color="#6db33f" />
+            <span className="skills-icon-tooltip">Spring Boot</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaVuejs title="Vue.js" color="#42b883" />
+            <span className="skills-icon-tooltip">Vue.js</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiNextdotjs title="Next.js" color="#000" />
+            <span className="skills-icon-tooltip">Next.js</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaGithub title="GitHub" color="#181717" />
+            <span className="skills-icon-tooltip">GitHub</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <FaDatabase title="SQL" color="#003b57" />
+            <span className="skills-icon-tooltip">SQL</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiOracle title="Oracle" color="#f80000" />
+            <span className="skills-icon-tooltip">Oracle</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiFlask title="Flask" color="#000" />
+            <span className="skills-icon-tooltip">Flask</span>
+          </div>
         </div>
       </div>
     </div>

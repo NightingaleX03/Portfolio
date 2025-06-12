@@ -18,6 +18,9 @@ const HomePage: React.FC = () => {
                 <button className="custom-button" onClick={() => handleButtonClick("/projects")}>
                     View All Projects
                 </button>
+                <button className="custom-button" onClick={() => handleButtonClick("/about")}>
+                    My Journey
+                </button>
                 <button className="custom-button" onClick={() => handleButtonClick("/contact")}>
                     Contact Me
                 </button>

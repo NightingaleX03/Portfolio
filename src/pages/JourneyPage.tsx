@@ -59,4 +59,28 @@ const BlogSection: React.FC = () => {
   );
 };
 
-export default BlogSection; 
+const JourneyPage = () => {
+  return (
+    <div className="blog-container">
+      {posts.map((post) => (
+        <div key={post.id} className={`blog-card ${post.height || "h-auto"}`}>
+          <h3 className="text-lg font-bold">{post.title}</h3>
+          {post.type === "linkedin" ? (
+            <iframe
+              src={post.embedUrl}
+              height="1095"
+              width="504"
+              frameBorder="0"
+              allowFullScreen
+              title="Embedded LinkedIn Post"
+            ></iframe>
+          ) : (
+            <p className="text-gray-600">{post.content}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default JourneyPage; 
