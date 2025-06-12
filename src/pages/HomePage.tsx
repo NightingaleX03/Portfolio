@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Intro from "../components/Intro";
 import Footer from "../components/footer";
 import KeyProjects from "../components/keyProjects";
+import "./HomePage.css";
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
@@ -26,8 +27,8 @@ const HomePage: React.FC = () => {
                 </button>
             </div>
             <div className="key-projects-section">
-                <h2>Key Projects</h2>
-                <p>Here are some of my notable projects that showcase my skills and experience.</p>
+                <h2 className="key-projects-title">Key Projects</h2>
+                <p className="key-projects-description">Here are some of my notable projects that showcase my skills and experience.</p>
                 <KeyProjects />
             </div>
             <Footer />

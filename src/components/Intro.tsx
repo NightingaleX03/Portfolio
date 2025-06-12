@@ -2,7 +2,7 @@ import React from 'react';
 import './Intro.css';
 import { useNavigate } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaEnvelope, FaJava, FaPython, FaNodeJs, FaHtml5, FaCss3Alt, FaReact, FaAngular, FaVuejs, FaAndroid, FaGitAlt, FaDatabase, FaChartBar, FaWindows } from 'react-icons/fa';
-import { SiTypescript, SiMongodb, SiExpress, SiC, SiCplusplus, SiSpringboot, SiNextdotjs, SiOracle, SiFlask, SiJavascript } from 'react-icons/si';
+import { SiTypescript, SiMongodb, SiExpress, SiC, SiCplusplus, SiSpringboot, SiNextdotjs, SiOracle, SiFlask, SiJavascript, SiTensorflow, SiMediapipe, SiDevpost, SiLeetcode } from 'react-icons/si';
 import { BsCodeSlash } from 'react-icons/bs';
 import myself from "../images/myself.jpg";
 
@@ -36,17 +36,20 @@ const Intro = () => {
       </div>
 
       <div className="social-links">
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/NightingaleX03" target="_blank" rel="noopener noreferrer">
           <FaGithub />
         </a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/sarah-mathew-0a4a06204/" target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
         </a>
-        <a href="https://leetcode.com/yourusername" target="_blank" rel="noopener noreferrer">
-          {/* Leetcode icon can be added here if desired */}
+        <a href="https://leetcode.com/u/nightingaleX_03/" target="_blank" rel="noopener noreferrer">
+          <SiLeetcode />
         </a>
-        <a href="mailto:your.email@example.com">
+        <a href="mailto:smthayil03@gmail.com">
           <FaEnvelope />
+        </a>
+        <a href="https://devpost.com/NightingaleX03" target="_blank" rel="noopener noreferrer">
+          <SiDevpost />
         </a>
       </div>
 
@@ -82,8 +85,16 @@ const Intro = () => {
             <span className="skills-icon-tooltip">MongoDB</span>
           </div>
           <div className="skills-icon-wrapper">
-            <FaPython title="Python" color="#3776ab" />
+            <FaPython title="Python" color="#FFD43B" />
             <span className="skills-icon-tooltip">Python</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiTensorflow title="TensorFlow" color="#FF6F00" />
+            <span className="skills-icon-tooltip">TensorFlow</span>
+          </div>
+          <div className="skills-icon-wrapper">
+            <SiMediapipe title="MediaPipe" color="#4285F4" />
+            <span className="skills-icon-tooltip">MediaPipe</span>
           </div>
           <div className="skills-icon-wrapper">
             <FaJava title="Java" color="#007396" />
@@ -130,7 +141,7 @@ const Intro = () => {
             <span className="skills-icon-tooltip">Next.js</span>
           </div>
           <div className="skills-icon-wrapper">
-            <FaGithub title="GitHub" color="#181717" />
+            <FaGithub title="GitHub" color="#5C2D91" />
             <span className="skills-icon-tooltip">GitHub</span>
           </div>
           <div className="skills-icon-wrapper">

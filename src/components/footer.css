@@ -1,61 +1,136 @@
 .footer {
-    background-color: black;
-    color: white;
-    padding: 20px 0;
-  }
-  
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  padding: 12px 0;
+  border-top: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: conic-gradient(from var(--gradient-angle), 
+    var(--ckr-1), var(--ckr-2), var(--ckr-3), var(--ckr-4), var(--ckr-5), 
+    var(--ckr-6), var(--ckr-7), var(--ckr-8), var(--ckr-9), var(--ckr-10), 
+    var(--ckr-9), var(--ckr-8), var(--ckr-7), var(--ckr-6), var(--ckr-5), 
+    var(--ckr-4), var(--ckr-3), var(--ckr-2), var(--ckr-1));
+  animation: rotation 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.footer:hover::before {
+  opacity: 1;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo {
+  width: 40px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.1);
+}
+
+.footer-message {
+  font-size: 14px;
+  margin: 0;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.footer-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-created-by {
+  font-size: 14px;
+  margin: 0;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.footer-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+}
+
+.footer-icons {
+  margin-top: 6px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.footer-icon {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.footer-icon:hover {
+  color: var(--text-accent);
+  opacity: 1;
+  transform: translateY(-3px);
+  border-color: var(--text-accent);
+  background-color: var(--card-bg);
+}
+
+@media (max-width: 768px) {
   .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
   }
-  
+
   .footer-left {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 15px;
   }
-  
-  .footer-logo {
-    width: 60px;
-    height: 40px;
-    margin-right: 10px;
-  }
-  
-  .footer-message {
-    font-size: 16px;
-    margin: 0;
-  }
-  
+
   .footer-right {
-    text-align: right;
+    text-align: center;
   }
-  
-  .footer-created-by {
-    font-size: 16px;
-    margin: 0;
-  }
-  
-  .footer-date {
-    font-size: 14px;
-    color: #777;
-    margin: 0;
-  }
-  
+
   .footer-icons {
-    margin-top: 10px;
+    justify-content: center;
   }
-  
-  .footer-icon {
-    color: white;
-    margin-left: 15px;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .footer-icon:hover {
-    color: #9e85ea;
-  }
+}
   

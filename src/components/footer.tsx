@@ -1,5 +1,6 @@
 import React from "react";
 import { FaInstagram, FaGithub, FaLinkedin, FaDev } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 import "./footer.css";
 import samewise from "../images/samwise2.0.png";
 
@@ -25,7 +26,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="footer-icon"
             >
-              <FaInstagram size={24} />
+              <FaInstagram size={20} />
             </a>
             <a
               href="https://github.com/NightingaleX03"
@@ -33,7 +34,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="footer-icon"
             >
-              <FaGithub size={24} />
+              <FaGithub size={20} />
             </a>
             <a
               href="https://www.linkedin.com/in/sarah-mathew-0a4a06204/"
@@ -41,7 +42,15 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="footer-icon"
             >
-              <FaLinkedin size={24} />
+              <FaLinkedin size={20} />
+            </a>
+            <a
+              href="https://leetcode.com/u/nightingaleX_03/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-icon"
+            >
+              <SiLeetcode size={20} />
             </a>
             <a
               href="https://devpost.com/NightingaleX03"
@@ -49,7 +58,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="footer-icon"
             >
-              <FaDev size={24} />
+              <FaDev size={20} />
             </a>
           </div>
         </div>

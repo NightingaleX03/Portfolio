@@ -1,0 +1,37 @@
+.key-projects-section {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.key-projects-title {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin: 0;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.key-projects-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+.key-projects-description {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 400;
+    font-style: italic;
+    white-space: nowrap;
+    opacity: 0.5;
+} 
