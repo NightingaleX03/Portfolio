@@ -210,7 +210,7 @@ const JourneyPage: React.FC = () => {
                   {event.tags.map((tag, i) => (
                     <span className="timeline-tag" key={i}>{tag}</span>
                   ))}
-                </div>
+        </div>
                 {event.links && (
                   <div className="timeline-links">
                     {event.links.map((link, i) => (
@@ -224,10 +224,10 @@ const JourneyPage: React.FC = () => {
                       >
                         {ICONS[link.type] || <span>{link.type[0].toUpperCase()}</span>}
                       </a>
-                    ))}
-                  </div>
-                )}
-              </div>
+      ))}
+    </div>
+          )}
+        </div>
             </div>
           );
         })}
