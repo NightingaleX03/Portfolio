@@ -3,6 +3,7 @@ import SearchBar from '../components/searchBar';
 import ProjectCard from '../components/projectCard';
 import data from '../projectsInfo.json';
 import './css/project.css';
+import Footer from '../components/footer';
 
 interface Project {
   title: string;
@@ -162,6 +163,7 @@ const Project: React.FC = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

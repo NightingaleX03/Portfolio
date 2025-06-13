@@ -1,84 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./css/blogpage.css";
 
-interface BlogPost {
+interface TimelineEvent {
   id: number;
-  type: "linkedin" | "text";
-  embedUrl?: string;
-  height?: string;
-  width?: string;
-  title?: string;
-  content?: string;
+  title: string;
+  date: string;
+  description: string;
+  tags: string[];
 }
 
-const posts: BlogPost[] = [
-  {
-    id: 1,
-    type: "linkedin",
-    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:7165799107695955968",
-    height: "h-[1095px]",
-    width: "w-[504px]",
-  },
-  {
-    id: 2,
-    type: "linkedin",
-    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:7175673134753230848",
-    height: "h-[986px]",
-    width: "w-[504px]",
-  },
-  {
-    id: 3,
-    type: "text",
-    title: "Blog Update",
-    content: "A detailed blog post description goes here.",
-    height: "h-72",
-  },
-];
+const JourneyPage: React.FC = () => {
+  const [events, setEvents] = useState<TimelineEvent[]>([]);
 
-const BlogSection: React.FC = () => {
-  return (
-    <div className="blog-container">
-      {posts.map((post) => (
-        <div key={post.id} className={`blog-card ${post.height || "h-auto"}`}>
-          <h3 className="text-lg font-bold">{post.title}</h3>
-          {post.type === "linkedin" ? (
-            <iframe
-              src={post.embedUrl}
-              height="1095"
-              width="504"
-              frameBorder="0"
-              allowFullScreen
-              title="Embedded LinkedIn Post"
-            ></iframe>
-          ) : (
-            <p className="text-gray-600">{post.content}</p>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-};
+  useEffect(() => {
+    // Dynamically import the JSON file
+    import("../data/journeyEvents.json").then((module) => {
+      const timelineEvents = module.default;
+      const sorted = [...timelineEvents].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setEvents(sorted);
+    });
+  }, []);
 
-const JourneyPage = () => {
   return (
-    <div className="blog-container">
-      {posts.map((post) => (
-        <div key={post.id} className={`blog-card ${post.height || "h-auto"}`}>
-          <h3 className="text-lg font-bold">{post.title}</h3>
-          {post.type === "linkedin" ? (
-            <iframe
-              src={post.embedUrl}
-              height="1095"
-              width="504"
-              frameBorder="0"
-              allowFullScreen
-              title="Embedded LinkedIn Post"
-            ></iframe>
-          ) : (
-            <p className="text-gray-600">{post.content}</p>
-          )}
-        </div>
-      ))}
+    <div className="timeline-container">
+      <h2 className="timeline-title">My Coding Journey</h2>
+      <div className="timeline">
+        {events.map((event, idx) => (
+          <div
+            key={event.id}
+            className={`timeline-event ${idx % 2 === 0 ? "left" : "right"}`}
+          >
+            <div className="timeline-content">
+              <h3>{event.title}</h3>
+              <span className="timeline-date">{event.date}</span>
+              <p>{event.description}</p>
+              <div className="timeline-tags">
+                {event.tags.map((tag, i) => (
+                  <span className="timeline-tag" key={i}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+        <div className="timeline-line" />
+      </div>
     </div>
   );
 };

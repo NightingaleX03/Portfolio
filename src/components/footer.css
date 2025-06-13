@@ -5,6 +5,8 @@
   border-top: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .footer::before {
