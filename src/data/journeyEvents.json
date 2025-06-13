@@ -4,27 +4,41 @@
     "title": "Started Learning JavaScript",
     "date": "2022-01-15",
     "description": "Began my coding journey by learning the basics of JavaScript and building small web projects.",
-    "tags": ["JavaScript", "Beginner", "Web"]
+    "tags": ["JavaScript", "Beginner", "Web"],
+    "links": [
+      { "type": "github", "url": "https://github.com/NightingaleX03" }
+    ]
   },
   {
     "id": 2,
     "title": "Built My First Portfolio Website",
     "date": "2022-06-10",
     "description": "Designed and deployed my first personal portfolio website using React and CSS.",
-    "tags": ["React", "Portfolio", "CSS"]
+    "tags": ["React", "Portfolio", "CSS"],
+    "links": [
+      { "type": "devpost", "url": "https://devpost.com/NightingaleX03" },
+      { "type": "github", "url": "https://github.com/NightingaleX03/portfolio" }
+    ]
   },
   {
     "id": 3,
     "title": "Contributed to Open Source",
     "date": "2023-03-05",
     "description": "Made my first open source contribution on GitHub, fixing bugs and adding features to community projects.",
-    "tags": ["Open Source", "GitHub", "Community"]
+    "tags": ["Open Source", "GitHub", "Community"],
+    "links": [
+      { "type": "github", "url": "https://github.com/NightingaleX03" },
+      { "type": "linkedin", "url": "https://www.linkedin.com/in/sarah-mathew-0a4a06204/" }
+    ]
   },
   {
     "id": 4,
     "title": "Landed My First Internship",
     "date": "2023-08-20",
     "description": "Secured a software engineering internship, working on real-world projects and collaborating with a team.",
-    "tags": ["Internship", "Teamwork", "Growth"]
+    "tags": ["Internship", "Teamwork", "Growth"],
+    "links": [
+      { "type": "linkedin", "url": "https://www.linkedin.com/in/sarah-mathew-0a4a06204/" }
+    ]
   }
 ] 

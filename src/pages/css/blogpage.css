@@ -70,6 +70,9 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s, transform 0.7s;
 }
 
 .timeline-event.left {
@@ -83,6 +86,8 @@
 }
 
 .timeline-content {
+  position: relative;
+  z-index: 2;
   background: var(--card-bg);
   border-radius: 12px;
   padding: 1.5rem 2rem;
@@ -90,7 +95,6 @@
   border: 1.5px solid var(--border-color, #68cecb);
   min-width: 220px;
   max-width: 350px;
-  position: relative;
   color: var(--text-color);
   font-family: 'Baloo Bhaina 2', sans-serif;
   text-align: left;
@@ -166,4 +170,131 @@
     left: 20px;
     width: 2px;
   }
+}
+
+.timeline-badge {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg);
+  border: 3px solid var(--text-secondary);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(104, 206, 203, 0.10);
+}
+.timeline-badge.left {
+  margin-left: -22px;
+}
+.timeline-badge.right {
+  margin-left: 22px;
+}
+.timeline-badge-icon {
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-links {
+  margin-top: 0.7rem;
+  display: flex;
+  gap: 0.7rem;
+}
+.timeline-link-icon {
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border: 1.5px solid var(--border-color);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  text-decoration: none;
+}
+.timeline-link-icon:hover {
+  color: var(--text-accent);
+  border-color: var(--text-accent);
+  background: var(--card-bg);
+}
+
+/* Adjust badge and event spacing for responsiveness */
+@media (max-width: 900px) {
+  .timeline-badge {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .timeline-badge {
+    left: 20px;
+    margin-left: 0;
+    transform: none;
+  }
+  .timeline-badge.left, .timeline-badge.right {
+    margin-left: 0;
+  }
+}
+
+.timeline-tracker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  z-index: 3;
+  transition: top 0.25s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+
+.timeline-tracker-airplane {
+  position: absolute;
+  left: 50px;
+  top: 60px;
+  width: 64px;
+  height: 64px;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 16px #ce686b44);
+  transition: filter 0.2s;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s, transform 0.7s;
+}
+.fade-out {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+
+.timeline-breeze {
+  position: absolute;
+  width: 60px;
+  height: 24px;
+  background: linear-gradient(90deg, #ce686b44 0%, #68cecb22 100%);
+  border-radius: 50%;
+  filter: blur(8px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.timeline-event-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  object-fit: cover;
+  max-height: 180px;
 }
