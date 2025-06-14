@@ -98,6 +98,7 @@
   color: var(--text-color);
   font-family: 'Baloo Bhaina 2', sans-serif;
   text-align: left;
+  margin-bottom: 24px;
 }
 
 .timeline-date {
