@@ -1,22 +1,33 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.6949a506.css",
-    "main.js": "/react-gh-pages/static/js/main.c0862681.js",
-    "static/js/453.b21437c2.chunk.js": "/react-gh-pages/static/js/453.b21437c2.chunk.js",
-    "static/media/devicon.svg?iehcku": "/react-gh-pages/static/media/devicon.de33ff67547800466a48.svg",
-    "static/media/keyprojectbackground.png": "/react-gh-pages/static/media/keyprojectbackground.5674100dc9bb359fbeda.png",
-    "static/media/devicon.woff?iehcku": "/react-gh-pages/static/media/devicon.25bdb9cbf8e5f9b4dde9.woff",
-    "static/media/devicon.ttf?iehcku": "/react-gh-pages/static/media/devicon.161b6f3376d6ce5c517d.ttf",
-    "static/media/myself.jpg": "/react-gh-pages/static/media/myself.b0d87e3edb1bf7cb38f5.jpg",
-    "static/media/link.png": "/react-gh-pages/static/media/link.7ccc36e062a8eb8e0b9c.png",
-    "static/media/github.png": "/react-gh-pages/static/media/github.ddf4326123de8dcf7bd0.png",
-    "index.html": "/react-gh-pages/index.html",
-    "main.6949a506.css.map": "/react-gh-pages/static/css/main.6949a506.css.map",
-    "main.c0862681.js.map": "/react-gh-pages/static/js/main.c0862681.js.map",
-    "453.b21437c2.chunk.js.map": "/react-gh-pages/static/js/453.b21437c2.chunk.js.map"
+    "main.css": "/portfolio/static/css/main.1cd7921b.css",
+    "main.js": "/portfolio/static/js/main.0e07be4e.js",
+    "static/js/239.17ee8b32.chunk.js": "/portfolio/static/js/239.17ee8b32.chunk.js",
+    "static/js/453.b21437c2.chunk.js": "/portfolio/static/js/453.b21437c2.chunk.js",
+    "static/media/sakurasound.png": "/portfolio/static/media/sakurasound.22f4c6e69a657a5c1dee.png",
+    "static/media/keyprojectbackground.png": "/portfolio/static/media/keyprojectbackground.5674100dc9bb359fbeda.png",
+    "static/media/3sudoku-shuffle.png": "/portfolio/static/media/3sudoku-shuffle.636eaa18e4cb32fb92c4.png",
+    "static/media/paper-airplane.png": "/portfolio/static/media/paper-airplane.1a299f13d141bdc1bbb5.png",
+    "static/media/portfolio.png": "/portfolio/static/media/portfolio.077b16f2614df42c90ef.png",
+    "static/media/nomore404.png": "/portfolio/static/media/nomore404.fc933120f36d04b4f4bb.png",
+    "static/media/EcoGrocer.png": "/portfolio/static/media/EcoGrocer.9ce78dfa2a07052cc19b.png",
+    "static/media/syntaxsisters.png": "/portfolio/static/media/syntaxsisters.349a781abc69f75a3640.png",
+    "static/media/rentEase.png": "/portfolio/static/media/rentEase.f135ef4a8a36c1973ed9.png",
+    "static/media/myself.jpg": "/portfolio/static/media/myself.b0d87e3edb1bf7cb38f5.jpg",
+    "static/media/mealer.png": "/portfolio/static/media/mealer.09f156611380d7c58f65.png",
+    "static/media/startupConnect.png": "/portfolio/static/media/startupConnect.54259e14517543b04a2d.png",
+    "static/media/noteEase.png": "/portfolio/static/media/noteEase.554ee7e29e22f2b7a4ef.png",
+    "static/media/focusflow.png": "/portfolio/static/media/focusflow.b64ff4d28437f93e3d56.png",
+    "static/media/CareMate.png": "/portfolio/static/media/CareMate.3dc0fd7ecb7e6902ddb6.png",
+    "static/media/link.png": "/portfolio/static/media/link.7ccc36e062a8eb8e0b9c.png",
+    "static/media/github.png": "/portfolio/static/media/github.ddf4326123de8dcf7bd0.png",
+    "index.html": "/portfolio/index.html",
+    "main.1cd7921b.css.map": "/portfolio/static/css/main.1cd7921b.css.map",
+    "main.0e07be4e.js.map": "/portfolio/static/js/main.0e07be4e.js.map",
+    "453.b21437c2.chunk.js.map": "/portfolio/static/js/453.b21437c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6949a506.css",
-    "static/js/main.c0862681.js"
+    "static/css/main.1cd7921b.css",
+    "static/js/main.0e07be4e.js"
   ]
 }
