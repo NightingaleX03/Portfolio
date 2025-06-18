@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Intro.css';
 import { useNavigate } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaEnvelope, FaJava, FaPython, FaNodeJs, FaHtml5, FaCss3Alt, FaReact, FaAngular, FaVuejs, FaAndroid, FaGitAlt, FaDatabase, FaChartBar, FaWindows } from 'react-icons/fa';
 import { SiTypescript, SiMongodb, SiExpress, SiC, SiCplusplus, SiSpringboot, SiNextdotjs, SiOracle, SiFlask, SiJavascript, SiTensorflow, SiMediapipe, SiDevpost, SiLeetcode } from 'react-icons/si';
 import { BsCodeSlash } from 'react-icons/bs';
 import myself from "../images/myself.jpg";
+import gsap from 'gsap';
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -12,6 +13,63 @@ const Intro = () => {
   const handleButtonClick = (path: string) => {
     navigate(path);
   };
+
+  useEffect(() => {
+    // Add GSAP bounce animation on hover for each tech stack icon
+    const iconWrappers = gsap.utils.toArray<HTMLElement>(".skills-icon-wrapper");
+    const bounces: gsap.core.Tween[] = [];
+
+    iconWrappers.forEach((wrapper, i) => {
+      // Default infinite bounce with wave delay
+      const bounce = gsap.to(wrapper, {
+        y: -12,
+        duration: 0.7,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+        delay: i * 0.08 // wave effect
+      });
+      bounces.push(bounce);
+
+      let iconIsHovered = false;
+
+      // Pause wave and set still on card hover
+      wrapper.addEventListener('mouseenter', () => {
+        bounce.pause();
+        if (!iconIsHovered) {
+          gsap.to(wrapper, { y: 0, scale: 1, duration: 0.18, ease: "power1.out" });
+        }
+      });
+      wrapper.addEventListener('mouseleave', () => {
+        if (!iconIsHovered) {
+          bounce.resume();
+        }
+      });
+
+      // Icon hover bounce (svg inside wrapper)
+      const icon = wrapper.querySelector('svg');
+      if (icon) {
+        icon.addEventListener('mouseenter', (e) => {
+          e.stopPropagation();
+          iconIsHovered = true;
+          bounce.pause();
+          gsap.to(wrapper, { y: -22, scale: 1.18, duration: 0.22, ease: "power1.out" });
+        });
+        icon.addEventListener('mouseleave', (e) => {
+          e.stopPropagation();
+          iconIsHovered = false;
+          gsap.to(wrapper, { y: 0, scale: 1, duration: 0.32, ease: "bounce.out" });
+        });
+      }
+    });
+    // Cleanup
+    return () => {
+      bounces.forEach(b => b.kill());
+      iconWrappers.forEach(wrapper => {
+        wrapper.replaceWith(wrapper.cloneNode(true)); // Remove all listeners
+      });
+    };
+  }, []);
 
   return (
     <div className="intro-wrapper">

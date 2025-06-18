@@ -40,6 +40,7 @@ const JourneyPage: React.FC = () => {
   const [events, setEvents] = useState<TimelineEvent[]>([]);
   const [timelineWidth, setTimelineWidth] = useState<number>(Math.min(Math.floor(window.innerWidth), MAX_WIDTH));
   const [cardPositions, setCardPositions] = useState<{ x: number, y: number, width: number, height: number }[]>([]);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
   const timelineRef = useRef<HTMLDivElement>(null);
   const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
   const airplaneRef = useRef<HTMLImageElement>(null);
@@ -106,69 +107,166 @@ const JourneyPage: React.FC = () => {
 
   const { path: pathString, endY } = generateLoopingPath(cardPositions, timelineWidth, TIMELINE_START_Y, LOOP_RADIUS);
 
+  // Single useEffect to handle all animations
   useEffect(() => {
     if (!events.length) return;
-    gsap.utils.toArray<HTMLElement>(".timeline-event").forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 60 },
-        {
+
+    // Kill all existing ScrollTriggers and animations
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    gsap.killTweensOf(".timeline-event");
+    gsap.killTweensOf(".timeline-title");
+    gsap.killTweensOf(".timeline-description");
+    gsap.killTweensOf(airplaneRef.current);
+    gsap.killTweensOf(breezeRef.current);
+    gsap.killTweensOf("#timelinePath");
+
+    // Only run initial animations if they haven't run yet
+    if (!hasAnimated) {
+      // Create a timeline for better control
+      const tl = gsap.timeline();
+
+      // Initial animation for title and description
+      const title = document.querySelector('.timeline-title');
+      const description = document.querySelector('.timeline-description');
+      
+      if (title) {
+        gsap.set(title, { opacity: 0, y: -30 });
+        tl.to(title, {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-            toggleActions: "play reverse play reverse",
+          ease: "power3.out"
+        });
+      }
+      
+      if (description) {
+        gsap.set(description, { opacity: 0, y: -20 });
+        tl.to(description, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.2,
+          ease: "power3.out"
+        }, "-=0.6");
+      }
+
+      // Animate the timeline path drawing in
+      const timelinePath = document.getElementById("timelinePath");
+      if (timelinePath) {
+        gsap.set(timelinePath, { strokeDasharray: "0 8" });
+        tl.to(timelinePath, {
+          strokeDasharray: "8 8",
+          duration: 2,
+          ease: "power2.out"
+        }, "-=0.4");
+      }
+
+      // Animate in the airplane and breeze
+      if (airplaneRef.current && breezeRef.current) {
+        gsap.set(airplaneRef.current, { opacity: 0, scale: 0.5 });
+        gsap.set(breezeRef.current, { opacity: 0, scale: 0.5 });
+        
+        tl.to([airplaneRef.current, breezeRef.current], {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "back.out(1.7)"
+        }, "-=1.5");
+      }
+      
+      // Initial animation for timeline events
+      gsap.utils.toArray<HTMLElement>(".timeline-event").forEach((el, index) => {
+        gsap.set(el, { opacity: 0, y: 60 });
+        tl.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out"
+        }, "-=0.7");
+      });
+
+      setHasAnimated(true);
+    } else {
+      // If animations have already run, just make sure elements are visible
+      gsap.set(".timeline-title", { opacity: 1, y: 0 });
+      gsap.set(".timeline-description", { opacity: 1, y: 0 });
+      gsap.set(".timeline-event", { opacity: 1, y: 0 });
+      gsap.set(airplaneRef.current, { opacity: 1, scale: 1 });
+      gsap.set(breezeRef.current, { opacity: 1, scale: 1 });
+      gsap.set("#timelinePath", { strokeDasharray: "8 8" });
+    }
+
+    // Set up scroll-triggered animations after initial animations
+    setTimeout(() => {
+      // Scroll-triggered animations for timeline events
+      gsap.utils.toArray<HTMLElement>(".timeline-event").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 80%",
+              toggleActions: "play reverse play reverse",
+            },
+          }
+        );
+      });
+
+      // Scroll-triggered animations for airplane and breeze
+      if (airplaneRef.current && breezeRef.current && document.getElementById("timelinePath")) {
+        gsap.set(breezeRef.current, { opacity: 0.5 });
+        gsap.to(breezeRef.current, {
+          motionPath: {
+            path: "#timelinePath",
+            align: "#timelinePath",
+            autoRotate: false,
+            alignOrigin: [0.5, 0.5],
+            start: 0.01,
+            end: 0.92,
           },
-        }
-      );
-    });
-  }, [events]);
+          scrollTrigger: {
+            trigger: ".timeline",
+            start: "top center",
+            end: "bottom center",
+            scrub: true,
+          },
+          opacity: 0.2,
+          ease: "power1.inOut"
+        });
 
+        gsap.to(airplaneRef.current, {
+          motionPath: {
+            path: "#timelinePath",
+            align: "#timelinePath",
+            autoRotate: true,
+            alignOrigin: [0.5, 0.5],
+            start: 0,
+            end: 1,
+          },
+          scrollTrigger: {
+            trigger: ".timeline",
+            start: "top center",
+            end: "bottom center",
+            scrub: true,
+          },
+          ease: "none"
+        });
+      }
+    }, hasAnimated ? 0 : 2000); // No delay if animations have already run
+
+  }, [events, timelineWidth, hasAnimated]);
+
+  // Cleanup function to kill all ScrollTriggers when component unmounts
   useEffect(() => {
-    if (!airplaneRef.current || !breezeRef.current || events.length === 0 || !document.getElementById("timelinePath")) return;
-
-    // Animate breeze
-    gsap.set(breezeRef.current, { opacity: 0.5 });
-    gsap.to(breezeRef.current, {
-      motionPath: {
-        path: "#timelinePath",
-        align: "#timelinePath",
-        autoRotate: false,
-        alignOrigin: [0.5, 0.5],
-        start: 0.01,
-        end: 0.92,
-      },
-      scrollTrigger: {
-        trigger: ".timeline",
-        start: "top center",
-        end: "bottom center",
-        scrub: true,
-      },
-      opacity: 0.2,
-      ease: "power1.inOut"
-    });
-
-    // Animate airplane
-    gsap.to(airplaneRef.current, {
-      motionPath: {
-        path: "#timelinePath",
-        align: "#timelinePath",
-        autoRotate: true,
-        alignOrigin: [0.5, 0.5],
-        start: 0,
-        end: 1,
-      },
-      scrollTrigger: {
-        trigger: ".timeline",
-        start: "top center",
-        end: "bottom center",
-        scrub: true,
-      },
-      ease: "none"
-    });
-  }, [events, timelineWidth]);
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      setHasAnimated(false); // Reset animation state when component unmounts
+    };
+  }, []);
 
   return (
     <div className="timeline-container" style={{ width: "100vw", maxWidth: MAX_WIDTH, margin: 0, paddingLeft: 24, overflowX: "hidden" }}>

@@ -269,5 +269,13 @@
     "links": [
       {"type": "coursera", "url": "https://www.coursera.org/account/accomplishments/verify/H2AM539EETAR"}
     ]
+  },
+  {
+    "id": 29,
+    "title": "RTC: Networking Event @ Sentry HQ Toronto",
+    "date": "2025-06-17",
+    "description": "Had an incredible oppertunity to attend a networking event at Sentry HQ Toronto. I've met some incredible people and learned about the different opportunities that are available to me.",
+    "tags": ["Networking","Organizations"],
+    "links": []
   }
 ] 
