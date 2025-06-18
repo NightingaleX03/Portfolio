@@ -133,8 +133,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 📞 Contact
 
-- **Email**: [Your Email]
-- **LinkedIn**: [Your LinkedIn]
+- **LinkedIn**: [@SarahMathew](https://www.linkedin.com/in/sarah-mathew-0a4a06204/)
 - **GitHub**: [@NightingaleX03](https://github.com/NightingaleX03)
 
 ## 🙏 Acknowledgments
