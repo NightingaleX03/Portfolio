@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import Navbar from './components/navbar';
-import { BrowserRouter as Router, useRoutes, Navigate } from 'react-router-dom';
+import { HashRouter as Router, useRoutes, Navigate } from 'react-router-dom';
 import "./index.css";
 import "./styles/global.css";
 import { ThemeProvider } from './context/ThemeContext';
@@ -33,7 +33,7 @@ const AppRoutes: React.FC = () => {
 const App: React.FC = () => {
     return (
         <ThemeProvider>
-            <Router basename="/">
+            <Router>
                 <div className="app-container">
                     <Navbar />
                     <main className="main-content">
