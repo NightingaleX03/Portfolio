@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/all";
 import Intro from "../components/Intro";
 import Footer from "../components/footer";
 import KeyProjects from "../components/keyProjects";

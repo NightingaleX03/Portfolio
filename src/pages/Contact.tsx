@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import "./css/blogpage.css";
 import { FaGithub, FaLinkedin, FaDev } from "react-icons/fa";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/all";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import airplane from "../images/paper-airplane.png";
 
