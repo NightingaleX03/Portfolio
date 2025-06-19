@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import Navbar from './components/navbar';
-import { HashRouter as Router, useRoutes, Navigate } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import "./index.css";
 import "./styles/global.css";
 import { ThemeProvider } from './context/ThemeContext';
