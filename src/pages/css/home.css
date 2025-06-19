@@ -106,7 +106,7 @@ body {
 }
 
 .key-projects-section h2 {
-    color: var(--primary-color);
+    color: var(#1c1c1c);
     text-align: center;
     font-family: 'Baloo Bhaina 2', sans-serif;
     margin-bottom: 0.5rem;
@@ -114,7 +114,7 @@ body {
 }
 
 .key-projects-section p {
-    color: #b0b0b0;
+    color: #1c1c1c;
     opacity: 1;
     text-align: center;
     font-family: 'Baloo Bhaina 2', sans-serif;
