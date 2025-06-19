@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import Navbar from './components/navbar';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, useRoutes, Navigate } from 'react-router-dom';
 import "./index.css";
 import "./styles/global.css";
 import { ThemeProvider } from './context/ThemeContext';
@@ -25,7 +25,6 @@ const AppRoutes: React.FC = () => {
         { path: "/", element: <Homepage /> },
         { path: "/projects", element: <Projects /> },
         { path: "/journey", element: <JourneyPage /> },
-        { path: "/contact", element: <Contact /> },
         { path: "*", element: <Navigate to="/" replace /> }
     ]);
 };
