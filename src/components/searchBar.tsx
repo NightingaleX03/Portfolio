@@ -1,6 +1,6 @@
 import React from 'react';
 import './searchBar.css';
-import samwise from "../images/samwise2.0.png";
+import samwise from "../images/samewise.png";
 
 interface SearchBarProps {
   query: string;

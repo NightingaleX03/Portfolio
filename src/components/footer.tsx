@@ -2,7 +2,7 @@ import React from "react";
 import { FaInstagram, FaGithub, FaLinkedin, FaDev } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import "./footer.css";
-import samewise from "../images/samwise2.0.png";
+import samewise from "../images/samewise.png";
 
 const Footer: React.FC = () => {
   return (
