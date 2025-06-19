@@ -51,8 +51,8 @@ const HomePage: React.FC = () => {
             <div className="button-row" ref={buttonRowRef}>
                 <button className="custom-button" onClick={() => handleButtonClick("/projects")}>View All Projects</button>
                 <button className="custom-button" onClick={() => handleButtonClick("/about")}>My Journey</button>
-                <button className="custom-button" onClick={() => handleButtonClick("/contact")}>Contact Me</button>
             </div>
+            
             <div className="key-projects-section" ref={keyProjectsRef}>
                 <h2 className="key-projects-title">Key Projects</h2>
                 <p className="key-projects-description">Here are some of my notable projects that showcase my skills and experience.</p>
