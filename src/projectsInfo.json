@@ -148,4 +148,16 @@
         },
         "photoCover": "startupConnect.png"
     }
+    ,
+    { "title": "Stack Sketch",
+        "role": "Full Stack Developer and Startup",
+        "type" : ["Full Stack Developer", "Startup"],
+        "description": "Empower every software team to build smarter, faster, and more cost-efficient cloud infrastructure—automated, optimized, and monetized.",
+        "tools": ["Angular", "typescript", "python", "Fast API", "Gemini", "Github API"],
+        "links": {
+            "github": "https://github.com/NightingaleX03/SpurHacks",
+            "devpost": "https://devpost.com/software/stacksketch"
+        },
+        "photoCover": "stackSketch.jpg"
+    }
 ]

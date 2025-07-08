@@ -277,5 +277,25 @@
     "description": "Had an incredible oppertunity to attend a networking event at Sentry HQ Toronto. I've met some incredible people and learned about the different opportunities that are available to me.",
     "tags": ["Networking","Organizations"],
     "links": []
+  },
+  {
+    "id": 30,
+    "title": "Hackathon: SpurHacks",
+    "date": "2025-06-20",
+    "description": "Waterloo?? SpurHacks?? 30 hours?? I had the incredible Oppertunity to attend SpurHacks as one of the startup stream participants, coding and planning out our business aspects of our startup.",
+    "tags": ["Hackathon"],
+    "links": []
+  },
+  {
+    "id": 31,
+    "title": "Got Chair Position for Ontario Tech ACM-W Student Chapter ",
+    "date": "2025-07-07",
+    "description": "Have the incredible oppertunity to become chair of ACM-W at University of Ontario Tech. This is a personal huge milestone of mine as I'm usually an introverted person. With this new found oppertunity I plan to help close the gender gap in the tech industry.",
+    "tags": ["University","Clubs"],
+    "links": [
+      {"type":"devpost", "url":"https://devpost.com/software/stacksketch"},
+      {"type": "github", "url":"https://github.com/NightingaleX03/SpurHacks"},
+      {"type": "demo", "url":"https://outwiththediagram.biz/"}
+    ]
   }
 ] 
