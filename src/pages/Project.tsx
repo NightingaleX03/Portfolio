@@ -34,16 +34,16 @@ const Project: React.FC = () => {
   const [sortOrder, setSortOrder] = useState<'oldest' | 'newest'>('newest');
 
   useEffect(() => {
-    // Ensure all projects have a type field
+    // Make sure all projects have a type field, use role if missing
     const projectsWithTypes = data.map(project => ({
       ...project,
-      type: project.type || [project.role] // Use role as type if type is missing
+      type: project.type || [project.role]
     }));
     setAllProjects(projectsWithTypes);
     setFilteredProjects(projectsWithTypes);
   }, []);
 
-  // Unified filtering effect
+  // Filter projects based on search, roles, and tech
   useEffect(() => {
     const selectedRoleKeys = Object.keys(selectedRoles).filter(role => selectedRoles[role]);
     const selectedTechKeys = Object.keys(selectedTech).filter(tech => selectedTech[tech]);
@@ -62,7 +62,7 @@ const Project: React.FC = () => {
       return matchesQuery && matchesRole && matchesTech;
     });
 
-    // Sort by date if available
+    // Sort by date
     filtered = filtered.slice().sort((a, b) => {
       if (!a.date || !b.date) return 0;
       if (sortOrder === 'oldest') {
@@ -75,7 +75,6 @@ const Project: React.FC = () => {
     setFilteredProjects(filtered);
   }, [query, selectedRoles, selectedTech, allProjects, sortOrder]);
 
-  // Toggle role selection
   const handleRoleClick = (role: string) => {
     setSelectedRoles((prev) => ({
       ...prev,
@@ -83,7 +82,6 @@ const Project: React.FC = () => {
     }));
   };
 
-  // Toggle tech selection
   const handleTechClick = (tech: string) => {
     setSelectedTech((prev) => ({
       ...prev,
@@ -91,7 +89,6 @@ const Project: React.FC = () => {
     }));
   };
 
-  // Handle sort order change
   const handleSortToggle = () => {
     setSortOrder((prev) => (prev === 'oldest' ? 'newest' : 'oldest'));
   };

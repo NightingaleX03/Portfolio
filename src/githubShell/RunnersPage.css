@@ -1,0 +1,149 @@
+/* Runners page specific styles */
+.runners-main-content {
+  flex: 1;
+  padding: 24px;
+}
+
+.runners-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.runners-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #c9d1d9;
+  margin: 0 0 4px 0;
+}
+
+.runners-subtitle {
+  font-size: 14px;
+  color: #8b949e;
+  margin: 0;
+}
+
+.new-runner-btn {
+  background-color: #238636;
+  color: #ffffff;
+  border: 1px solid #238636;
+  border-radius: 6px;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.new-runner-btn:hover:not(:disabled) {
+  background-color: #2ea043;
+}
+
+.new-runner-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Introduction Section */
+.runners-intro-section {
+  background-color: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.runners-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #c9d1d9;
+  margin: 0 0 12px 0;
+}
+
+.runners-intro-text {
+  font-size: 14px;
+  color: #8b949e;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+.runners-intro-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Tabs */
+.runners-tabs {
+  display: flex;
+  border-bottom: 1px solid #21262d;
+  margin-bottom: 24px;
+  gap: 8px;
+}
+
+.runners-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #8b949e;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.runners-tab:hover {
+  color: #c9d1d9;
+}
+
+.runners-tab.active {
+  color: #f0883e;
+  border-bottom-color: #f0883e;
+}
+
+/* Tab Content */
+.runners-tab-content {
+  min-height: 400px;
+}
+
+.university-content {
+  background-color: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 24px;
+}
+
+.university-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.university-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #c9d1d9;
+  margin: 0;
+}
+
+.university-dates {
+  font-size: 14px;
+  color: #8b949e;
+  font-weight: 500;
+}
+
+.university-status {
+  font-size: 14px;
+  color: #f0883e;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+}
+
+.university-description {
+  font-size: 14px;
+  color: #8b949e;
+  line-height: 1.6;
+  margin: 0;
+}
+

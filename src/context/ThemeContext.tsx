@@ -13,7 +13,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setTheme] = useState<Theme>('dark'); // Set dark as default
 
   useEffect(() => {
-    // Apply theme to document
+    // Update theme on document
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 

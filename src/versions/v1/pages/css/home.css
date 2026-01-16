@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&display=swap');
+
+:root {
+  --ckr-1: #68cecb;
+  --ckr-2: #68cecb;
+  --ckr-3: #68cecb;
+  --ckr-4: #68cecb;
+  --ckr-5: #ce686b;
+  --ckr-6: #ce686b;
+  --ckr-7: #ce689e;
+  --ckr-8: #ce689e;
+  --ckr-9: #ce9868;
+  --ckr-10: #ce9868;
+}
+
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin: 50px auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    max-width: 800px;
+}
+
+.custom-button {
+    flex: 0 1 200px;
+    padding: 15px 0;
+    font-size: 16px;
+    background-color: var(--card-bg);
+    font-family: 'Baloo Bhaina 2', sans-serif;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    text-align: center;
+    min-width: 180px;
+}
+
+.custom-button:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border-color: var(--primary-color);
+}
+
+.key-projects-section {
+    position: relative;
+    margin: 5px auto;
+    max-width: 100%;
+    padding: 2px;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.key-projects-section::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    background: conic-gradient(from var(--gradient-angle), 
+        var(--ckr-1), var(--ckr-2), var(--ckr-3), var(--ckr-4), var(--ckr-5), 
+        var(--ckr-6), var(--ckr-7), var(--ckr-8), var(--ckr-9), var(--ckr-10), 
+        var(--ckr-9), var(--ckr-8), var(--ckr-7), var(--ckr-6), var(--ckr-5), 
+        var(--ckr-4), var(--ckr-3), var(--ckr-2), var(--ckr-1));
+    animation: rotation 20s linear infinite;
+    border-radius: 17px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.key-projects-section:hover::before {
+    animation: rotation 10s linear infinite;
+    opacity: 1;
+}
+
+.key-projects-section:hover {
+    transform: translateY(-5px);
+}
+
+.key-projects-section h2 {
+    color: var(#1c1c1c);
+    text-align: center;
+    font-family: 'Baloo Bhaina 2', sans-serif;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.key-projects-section p {
+    color: #1c1c1c;
+    opacity: 1;
+    text-align: center;
+    font-family: 'Baloo Bhaina 2', sans-serif;
+    font-style: italic;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+/* Home container */
+.home-container {
+    min-height: 100vh;
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease;
+}

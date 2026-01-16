@@ -129,7 +129,7 @@ const JourneyPage: React.FC = () => {
   useEffect(() => {
     if (!airplaneRef.current || !breezeRef.current || events.length === 0 || !document.getElementById("timelinePath")) return;
 
-    // Animate breeze
+    // Animate the breeze trail
     gsap.set(breezeRef.current, { opacity: 0.5 });
     gsap.to(breezeRef.current, {
       motionPath: {
@@ -150,7 +150,7 @@ const JourneyPage: React.FC = () => {
       ease: "power1.inOut"
     });
 
-    // Animate airplane
+    // Animate the airplane
     gsap.to(airplaneRef.current, {
       motionPath: {
         path: "#timelinePath",

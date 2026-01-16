@@ -9,12 +9,12 @@ const KeyProjects: React.FC = () => {
   const autoSlideInterval = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const startAutoSlide = () => {
-    // Clear any existing interval
+    // Clear existing interval
     if (autoSlideInterval.current) {
       clearInterval(autoSlideInterval.current);
     }
     
-    // Set new interval - 8 seconds per slide
+    // Auto slide every 8 seconds
     autoSlideInterval.current = setInterval(() => {
       handleNext();
     }, 8000);
@@ -26,20 +26,19 @@ const KeyProjects: React.FC = () => {
     }
   };
 
-  // Start auto-sliding when component mounts
+  // Start auto slide on mount
   useEffect(() => {
     startAutoSlide();
     
-    // Cleanup on unmount
     return () => {
       stopAutoSlide();
     };
   }, []);
 
-  // Pause auto-sliding when user interacts
+  // Pause auto slide when user interacts
   const handleUserInteraction = () => {
     stopAutoSlide();
-    // Resume auto-sliding after 15 seconds of no interaction
+    // Resume after 15 seconds
     setTimeout(startAutoSlide, 15000);
   };
 
@@ -51,11 +50,11 @@ const KeyProjects: React.FC = () => {
     const currentItem = items[currentIndex];
     const nextItem = items[(currentIndex + 1) % items.length];
 
-    // First fade out current item
+    // Fade out current item
     currentItem.classList.remove("active");
     currentItem.classList.add("sliding-out");
 
-    // After fade out, start sliding in next item
+    // Slide in next item
     setTimeout(() => {
       if (slideRef.current) {
         nextItem.classList.add("sliding-in");
@@ -63,7 +62,7 @@ const KeyProjects: React.FC = () => {
       }
     }, 500);
 
-    // Complete the transition
+    // Finish transition
     setTimeout(() => {
       if (slideRef.current) {
         currentItem.classList.remove("sliding-out");
@@ -82,11 +81,11 @@ const KeyProjects: React.FC = () => {
     const currentItem = items[currentIndex];
     const prevItem = items[(currentIndex - 1 + items.length) % items.length];
 
-    // First fade out current item
+    // Fade out current item
     currentItem.classList.remove("active");
     currentItem.classList.add("sliding-out");
 
-    // After fade out, start sliding in previous item
+    // Slide in previous item
     setTimeout(() => {
       if (slideRef.current) {
         prevItem.classList.add("sliding-in");
@@ -94,7 +93,7 @@ const KeyProjects: React.FC = () => {
       }
     }, 500);
 
-    // Complete the transition
+    // Finish transition
     setTimeout(() => {
       if (slideRef.current) {
         currentItem.classList.remove("sliding-out");
@@ -113,11 +112,11 @@ const KeyProjects: React.FC = () => {
     const currentItem = items[currentIndex];
     const targetItem = items[index];
 
-    // First fade out current item
+    // Fade out current item
     currentItem.classList.remove("active");
     currentItem.classList.add("sliding-out");
 
-    // After fade out, start sliding in target item
+    // Slide in target item
     setTimeout(() => {
       if (slideRef.current) {
         targetItem.classList.add("sliding-in");
@@ -125,7 +124,7 @@ const KeyProjects: React.FC = () => {
       }
     }, 500);
 
-    // Complete the transition
+    // Finish transition
     setTimeout(() => {
       if (slideRef.current) {
         currentItem.classList.remove("sliding-out");

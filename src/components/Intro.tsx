@@ -15,25 +15,25 @@ const Intro = () => {
   };
 
   useEffect(() => {
-    // Add GSAP bounce animation on hover for each tech stack icon
+    // Bounce animation for tech stack icons
     const iconWrappers = gsap.utils.toArray<HTMLElement>(".skills-icon-wrapper");
     const bounces: gsap.core.Tween[] = [];
 
     iconWrappers.forEach((wrapper, i) => {
-      // Default infinite bounce with wave delay
+      // Default bounce with wave effect
       const bounce = gsap.to(wrapper, {
         y: -12,
         duration: 0.7,
         yoyo: true,
         repeat: -1,
         ease: "sine.inOut",
-        delay: i * 0.08 // wave effect
+        delay: i * 0.08
       });
       bounces.push(bounce);
 
       let iconIsHovered = false;
 
-      // Pause wave and set still on card hover
+      // Pause bounce when hovering over the card
       wrapper.addEventListener('mouseenter', () => {
         bounce.pause();
         if (!iconIsHovered) {
@@ -46,7 +46,7 @@ const Intro = () => {
         }
       });
 
-      // Icon hover bounce (svg inside wrapper)
+      // Extra bounce when hovering directly on the icon
       const icon = wrapper.querySelector('svg');
       if (icon) {
         icon.addEventListener('mouseenter', (e) => {
@@ -62,11 +62,12 @@ const Intro = () => {
         });
       }
     });
-    // Cleanup
+    
+    // Clean up on unmount
     return () => {
       bounces.forEach(b => b.kill());
       iconWrappers.forEach(wrapper => {
-        wrapper.replaceWith(wrapper.cloneNode(true)); // Remove all listeners
+        wrapper.replaceWith(wrapper.cloneNode(true));
       });
     };
   }, []);

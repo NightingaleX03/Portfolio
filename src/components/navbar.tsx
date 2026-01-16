@@ -11,9 +11,9 @@ const Navbar: React.FC = () => {
                 <img src={logo} alt="My Logo" />
             </div>
             <ul className="nav-links">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/projects">Projects</Link></li>
-                <li><Link to="/journey">My Journey</Link></li>
+                <li><Link to="/commit/v1">Home</Link></li>
+                <li><Link to="/commit/v1/projects">Projects</Link></li>
+                <li><Link to="/commit/v1/journey">My Journey</Link></li>
             </ul>
             {/* <div className="navbar-theme-toggle">
                 <ThemeToggle />

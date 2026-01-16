@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
 
-    // Refs for sections
+    // Section refs for animations
     const introRef = useRef<HTMLDivElement>(null);
     const buttonRowRef = useRef<HTMLDivElement>(null);
     const keyProjectsRef = useRef<HTMLDivElement>(null);
@@ -49,8 +49,8 @@ const HomePage: React.FC = () => {
         <div className="home-container">
             <div ref={introRef}><Intro /></div>
             <div className="button-row" ref={buttonRowRef}>
-                <button className="custom-button" onClick={() => handleButtonClick("/projects")}>View All Projects</button>
-                <button className="custom-button" onClick={() => handleButtonClick("/about")}>My Journey</button>
+                <button className="custom-button" onClick={() => handleButtonClick("/commit/v1/projects")}>View All Projects</button>
+                <button className="custom-button" onClick={() => handleButtonClick("/commit/v1/journey")}>My Journey</button>
             </div>
             
             <div className="key-projects-section" ref={keyProjectsRef}>

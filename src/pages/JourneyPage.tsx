@@ -107,11 +107,11 @@ const JourneyPage: React.FC = () => {
 
   const { path: pathString, endY } = generateLoopingPath(cardPositions, timelineWidth, TIMELINE_START_Y, LOOP_RADIUS);
 
-  // Single useEffect to handle all animations
+  // Handle all the timeline animations
   useEffect(() => {
     if (!events.length) return;
 
-    // Kill all existing ScrollTriggers and animations
+    // Clean up any existing animations first
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     gsap.killTweensOf(".timeline-event");
     gsap.killTweensOf(".timeline-title");
@@ -120,12 +120,11 @@ const JourneyPage: React.FC = () => {
     gsap.killTweensOf(breezeRef.current);
     gsap.killTweensOf("#timelinePath");
 
-    // Only run initial animations if they haven't run yet
+    // Only animate on first load
     if (!hasAnimated) {
-      // Create a timeline for better control
       const tl = gsap.timeline();
 
-      // Initial animation for title and description
+      // Animate title and description
       const title = document.querySelector('.timeline-title');
       const description = document.querySelector('.timeline-description');
       
@@ -150,7 +149,7 @@ const JourneyPage: React.FC = () => {
         }, "-=0.6");
       }
 
-      // Animate the timeline path drawing in
+      // Draw the timeline path
       const timelinePath = document.getElementById("timelinePath");
       if (timelinePath) {
         gsap.set(timelinePath, { strokeDasharray: "0 8" });
@@ -161,7 +160,7 @@ const JourneyPage: React.FC = () => {
         }, "-=0.4");
       }
 
-      // Animate in the airplane and breeze
+      // Animate the airplane and breeze trail
       if (airplaneRef.current && breezeRef.current) {
         gsap.set(airplaneRef.current, { opacity: 0, scale: 0.5 });
         gsap.set(breezeRef.current, { opacity: 0, scale: 0.5 });
@@ -174,7 +173,7 @@ const JourneyPage: React.FC = () => {
         }, "-=1.5");
       }
       
-      // Initial animation for timeline events
+      // Animate timeline event cards
       gsap.utils.toArray<HTMLElement>(".timeline-event").forEach((el, index) => {
         gsap.set(el, { opacity: 0, y: 60 });
         tl.to(el, {
@@ -187,7 +186,7 @@ const JourneyPage: React.FC = () => {
 
       setHasAnimated(true);
     } else {
-      // If animations have already run, just make sure elements are visible
+      // Already animated, just make sure everything is visible
       gsap.set(".timeline-title", { opacity: 1, y: 0 });
       gsap.set(".timeline-description", { opacity: 1, y: 0 });
       gsap.set(".timeline-event", { opacity: 1, y: 0 });
@@ -196,9 +195,9 @@ const JourneyPage: React.FC = () => {
       gsap.set("#timelinePath", { strokeDasharray: "8 8" });
     }
 
-    // Set up scroll-triggered animations after initial animations
+    // Set up scroll animations after the initial ones
     setTimeout(() => {
-      // Scroll-triggered animations for timeline events
+      // Animate events as you scroll
       gsap.utils.toArray<HTMLElement>(".timeline-event").forEach((el) => {
         gsap.fromTo(
           el,
@@ -216,7 +215,7 @@ const JourneyPage: React.FC = () => {
         );
       });
 
-      // Scroll-triggered animations for airplane and breeze
+      // Make airplane and breeze follow the path on scroll
       if (airplaneRef.current && breezeRef.current && document.getElementById("timelinePath")) {
         gsap.set(breezeRef.current, { opacity: 0.5 });
         gsap.to(breezeRef.current, {
@@ -256,15 +255,15 @@ const JourneyPage: React.FC = () => {
           ease: "none"
         });
       }
-    }, hasAnimated ? 0 : 2000); // No delay if animations have already run
+    }, hasAnimated ? 0 : 2000);
 
   }, [events, timelineWidth, hasAnimated]);
 
-  // Cleanup function to kill all ScrollTriggers when component unmounts
+  // Clean up animations when component unmounts
   useEffect(() => {
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      setHasAnimated(false); // Reset animation state when component unmounts
+      setHasAnimated(false);
     };
   }, []);
 
