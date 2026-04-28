@@ -1,0 +1,154 @@
+.particle-cube-section {
+  width: 100%;
+  height: 600vh; /* 6x viewport height - one for each face */
+  display: block;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  position: relative;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+}
+
+.particle-cube-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 1;
+}
+
+.particle-cube-canvas {
+  width: 50%;
+  height: 100vh;
+  position: relative;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  z-index: 1;
+  background: transparent;
+  pointer-events: none;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.particle-cube-canvas canvas {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100vw !important;
+  height: 100vh !important;
+  display: block;
+  background: transparent;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle-cube-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+  z-index: 10;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: 40px;
+  pointer-events: auto;
+  width: 45%;
+  min-width: 400px;
+  transition: opacity 0.3s ease;
+}
+
+.cube-face-info {
+  opacity: 0;
+  transform: translateX(30px);
+  animation: fadeInRight 0.6s ease-out forwards;
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cube-face-title {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 24px 0;
+  line-height: 1.2;
+}
+
+.cube-face-description {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #cbd5e1;
+  margin: 0 0 32px 0;
+  max-width: 500px;
+}
+
+.cube-face-indicator {
+  width: 60px;
+  height: 4px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px currentColor;
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+  .particle-cube-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .particle-cube-canvas {
+    height: 500px;
+  }
+
+  .particle-cube-content {
+    text-align: center;
+    align-items: center;
+  }
+
+  .cube-face-description {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .particle-cube-section {
+    padding: 60px 0;
+  }
+
+  .particle-cube-container {
+    padding: 0 20px;
+  }
+
+  .particle-cube-canvas {
+    height: 400px;
+  }
+
+  .cube-face-title {
+    font-size: 36px;
+  }
+
+  .cube-face-description {
+    font-size: 16px;
+  }
+}

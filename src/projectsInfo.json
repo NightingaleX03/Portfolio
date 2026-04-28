@@ -159,5 +159,16 @@
             "devpost": "https://devpost.com/software/stacksketch"
         },
         "photoCover": "stackSketch.jpg"
+    },
+    {
+        "title": "TetraLizard",
+        "role": "GUI Developer + Routing",
+        "type" : ["Front-end Developer"],
+        "description": "A competitive multiplayer block-stacking game featuring everyone's favourite lizard Tom from the movie Hoppers. Stack tetrominos, clear lines, and be the last player standing!",
+        "tools": ["Java Swing", "Threads"],
+        "links": {
+            "github": "https://github.com/OntarioTech-CS-program/w26-csci2020u-finalproject-w26-team42"
+        },
+        "photoCover": ""
     }
 ]

@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import myself from '../../../images/myself.jpg';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { SiLeetcode, SiDevpost } from 'react-icons/si';
+import ParticleCube from '../components/ParticleCube';
 import './V2HomePage.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -121,6 +122,9 @@ const V2HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* 3D Particle Cube Section */}
+      <ParticleCube />
 
       {/* About me section */}
       <section ref={introRef} className="v2-intro">
