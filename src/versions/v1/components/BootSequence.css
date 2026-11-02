@@ -1,0 +1,339 @@
+.rig-boot {
+  --text-color: var(--gold-soft);
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 38% 42%, #5c4250 0%, var(--chip) 62%);
+  color: var(--gold-soft);
+}
+
+.rig-boot.is-zoom {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.rig-skip {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  appearance: none;
+  background: transparent;
+  color: var(--gold-soft);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.rig-boot-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  width: min(960px, calc(100% - 32px));
+  padding: 64px 8px 24px;
+}
+
+.rig-tower {
+  position: relative;
+  width: 300px;
+  height: 360px;
+  flex: none;
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  background: linear-gradient(180deg, #fbeff2, #e7b7c3);
+  border-radius: 12px 16px 16px 12px;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 248, 245, 0.7),
+    0 24px 50px rgba(0, 0, 0, 0.38);
+  overflow: visible;
+}
+
+.rig-boot.is-zoom .rig-tower {
+  transform: scale(7);
+  opacity: 0;
+  transition: transform 0.9s ease, opacity 0.9s ease;
+  transform-origin: 62% 46%;
+}
+
+.rig-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 18px 8px;
+  background: linear-gradient(90deg, #f7dfe5, #ecc9d2);
+  border-radius: 12px 0 0 12px;
+}
+
+.rig-bay {
+  width: 52px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--chip);
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.45);
+}
+
+.rig-case-leds {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.rig-case-led,
+.rig-case-act {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2a1c22;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.rig-case-led.is-on {
+  background: var(--led-green);
+  box-shadow: 0 0 8px var(--led-green);
+}
+
+.rig-case-act.is-flicker {
+  background: var(--led-amber);
+  animation: rig-act-flicker 0.18s steps(2) infinite;
+}
+
+@keyframes rig-act-flicker {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.rig-power {
+  width: 46px;
+  height: 46px;
+  margin-top: auto;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: radial-gradient(circle at 38% 35%, #fff8ea, var(--gold) 46%, #8d6b1d);
+  cursor: pointer;
+  animation: rig-power-pulse 1.8s ease-in-out infinite;
+}
+
+.rig-power:disabled {
+  cursor: default;
+  animation: none;
+}
+
+@keyframes rig-power-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(241, 215, 138, 0.65);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(241, 215, 138, 0);
+  }
+}
+
+.rig-chassis {
+  position: relative;
+  margin: 14px 14px 14px 6px;
+}
+
+.rig-mini {
+  position: absolute;
+  inset: 0;
+  background-color: var(--board);
+  background-image: radial-gradient(circle, var(--gold) 0.6px, transparent 0.75px);
+  background-size: 9px 9px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr;
+  grid-template-rows: 1fr 0.55fr 0.7fr;
+  gap: 6px;
+  padding: 8px;
+}
+
+.rig-mini-cpu {
+  border: 2px solid var(--gold);
+  border-radius: 2px;
+  background: linear-gradient(155deg, #f6d2cb, #c48a7c 55%, #e7b2a6);
+}
+
+.rig-mini-ram {
+  display: flex;
+  gap: 3px;
+}
+
+.rig-mini-ram i {
+  flex: 1;
+  display: block;
+  background: linear-gradient(180deg, #d36b7e, #8e3b4e);
+  border-bottom: 3px solid var(--gold);
+  border-radius: 1px;
+}
+
+.rig-mini-m2 {
+  background: var(--chip);
+  border-radius: 1px;
+  position: relative;
+}
+
+.rig-mini-m2::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold) 0 40%, transparent 40% 52%, var(--gold) 52%);
+}
+
+.rig-mini-gpu {
+  grid-column: 1 / -1;
+  background: var(--chip);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.rig-mini-fan {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: repeating-conic-gradient(from 10deg, #6b5460 0deg 18deg, #241820 18deg 40deg);
+  position: relative;
+}
+
+.rig-mini-fan::after {
+  content: "";
+  position: absolute;
+  inset: 34%;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.rig-boot.is-open .rig-mini-fan,
+.rig-boot.is-zoom .rig-mini-fan {
+  animation: rig-fan-spin 0.7s linear infinite;
+}
+
+@keyframes rig-fan-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rig-side {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 7px,
+      rgba(74, 47, 58, 0.18) 7px 9px
+    ),
+    linear-gradient(165deg, #f6dbe2, #e4b3be);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 248, 245, 0.8);
+  transition: transform 0.78s ease 0.22s, opacity 0.78s ease 0.22s;
+}
+
+.rig-screw {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 45%, #4a2f3a 45% 55%, transparent 55%),
+    radial-gradient(circle at 40% 35%, #f1d78a, #a6842a 60%, #5c4a16);
+  box-shadow: inset 0 0 0 1px rgba(74, 47, 58, 0.4);
+}
+
+.rig-screw-top {
+  top: 10px;
+  right: 10px;
+}
+
+.rig-screw-bottom {
+  bottom: 10px;
+  left: 10px;
+}
+
+.rig-boot.is-open .rig-screw,
+.rig-boot.is-zoom .rig-screw {
+  animation: rig-unscrew 0.28s linear forwards;
+}
+
+@keyframes rig-unscrew {
+  to {
+    transform: rotate(-240deg);
+  }
+}
+
+.rig-boot.is-open .rig-side,
+.rig-boot.is-zoom .rig-side {
+  transform: translate(-48px, 140px) rotate(-18deg);
+  opacity: 0;
+}
+
+.rig-boot-copy {
+  width: min(440px, 100%);
+  min-height: 220px;
+}
+
+.rig .rig-boot-prompt {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--gold-soft);
+  margin: 0;
+}
+
+.rig .rig-boot-hint {
+  margin: 10px 0 0;
+  font-family: var(--body);
+  color: var(--board);
+  font-size: 1rem;
+}
+
+.rig .rig-boot-log {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: var(--gold-soft);
+  text-shadow: 0 0 8px rgba(232, 168, 124, 0.45);
+  white-space: pre-wrap;
+}
+
+@media (max-width: 640px) {
+  .rig-boot-layout {
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 64px;
+  }
+
+  .rig-tower {
+    width: 220px;
+    height: 264px;
+  }
+
+  .rig-boot-copy {
+    min-height: 0;
+  }
+
+  .rig-boot-log {
+    font-size: 1.15rem;
+  }
+}

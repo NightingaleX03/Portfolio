@@ -1,67 +1,79 @@
-import React, { useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import Intro from "../../../components/Intro";
-import Footer from "../../../components/footer";
-import KeyProjects from "../../../components/keyProjects";
+import React, { useCallback, useEffect, useState } from "react";
+import BootSequence, { prefersReducedMotion } from "../components/BootSequence";
+import Motherboard from "../components/Motherboard";
+import RigFooter from "../components/RigFooter";
+import "../rig.css";
 import "./V1HomePage.css";
 
-gsap.registerPlugin(ScrollTrigger);
+function alreadyBooted() {
+  try {
+    return sessionStorage.getItem("rig-booted") === "1";
+  } catch {
+    return false;
+  }
+}
+
+function markBooted() {
+  try {
+    sessionStorage.setItem("rig-booted", "1");
+  } catch {
+    /* storage unavailable */
+  }
+}
 
 const V1HomePage: React.FC = () => {
-    const navigate = useNavigate();
+  const skipIntro = prefersReducedMotion() || alreadyBooted();
+  const [bootKey, setBootKey] = useState(0);
+  const [showBoot, setShowBoot] = useState(!skipIntro);
+  const [revealed, setRevealed] = useState(skipIntro);
+  const [sweep, setSweep] = useState(0);
 
-    // Section refs for animations
-    const introRef = useRef<HTMLDivElement>(null);
-    const buttonRowRef = useRef<HTMLDivElement>(null);
-    const keyProjectsRef = useRef<HTMLDivElement>(null);
-    const footerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (prefersReducedMotion()) markBooted();
+  }, []);
 
-    useEffect(() => {
-        const sections = [introRef, buttonRowRef, keyProjectsRef];
-        sections.forEach(ref => {
-            if (ref.current) {
-                gsap.fromTo(
-                    ref.current,
-                    { opacity: 0, y: 60 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: ref.current,
-                            start: "top 85%",
-                            toggleActions: "play reverse play reverse"
-                        }
-                    }
-                );
-            }
-        });
-    }, []);
-
-    const handleButtonClick = (path: string) => {
-        navigate(path);
+  useEffect(() => {
+    const onReboot = () => {
+      if (prefersReducedMotion()) {
+        markBooted();
+        setShowBoot(false);
+        setRevealed(true);
+        return;
+      }
+      setSweep(0);
+      setRevealed(false);
+      setBootKey((key) => key + 1);
+      setShowBoot(true);
     };
+    window.addEventListener("rig:reboot", onReboot);
+    return () => window.removeEventListener("rig:reboot", onReboot);
+  }, []);
 
-    return (
-        <div className="home-container">
-            <div ref={introRef}><Intro /></div>
-            <div className="button-row" ref={buttonRowRef}>
-                <button className="custom-button" onClick={() => handleButtonClick("/commit/v1/projects")}>View All Projects</button>
-                <button className="custom-button" onClick={() => handleButtonClick("/commit/v1/journey")}>My Journey</button>
-            </div>
-            
-            <div className="key-projects-section" ref={keyProjectsRef}>
-                <h2 className="key-projects-title">Key Projects</h2>
-                <p className="key-projects-description">Here are some of my notable projects that showcase my skills and experience.</p>
-                <KeyProjects />
-            </div>
-            <div ref={footerRef}><Footer /></div>
-        </div>
-    );
+  const onReveal = useCallback(() => setRevealed(true), []);
+
+  const onComplete = useCallback((reason: "finished" | "skipped") => {
+    markBooted();
+    setShowBoot(false);
+    setRevealed(true);
+    if (reason === "finished" && !prefersReducedMotion()) {
+      setSweep((value) => value + 1);
+    }
+    window.requestAnimationFrame(() => {
+      document.getElementById("rig-silk-title")?.focus();
+    });
+  }, []);
+
+  return (
+    <div className="rig rig-page">
+      {showBoot && (
+        <BootSequence key={bootKey} onReveal={onReveal} onComplete={onComplete} />
+      )}
+      <div className={revealed ? "rig-reveal is-shown" : "rig-reveal is-hidden"}>
+        <Motherboard sweep={sweep} />
+        <RigFooter />
+      </div>
+    </div>
+  );
 };
 
 export default V1HomePage;
-

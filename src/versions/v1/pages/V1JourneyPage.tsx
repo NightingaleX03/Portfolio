@@ -1,369 +1,132 @@
-import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
+import React, { useMemo, useState } from "react";
+import journeyEvents from "../../../data/journeyEvents.json";
+import RigFooter from "../components/RigFooter";
+import "../rig.css";
 import "./css/blogpage.css";
-import { FaGithub, FaLinkedin, FaDev } from "react-icons/fa";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import MotionPathPlugin from "gsap/MotionPathPlugin";
-import airplane from "../../../images/paper-airplane.png";
 
-interface TimelineLink {
-  type: "github" | "linkedin" | "devpost" | string;
+interface JourneyLink {
+  type: string;
   url: string;
 }
 
-interface TimelineEvent {
+interface JourneyEvent {
   id: number;
   title: string;
   date: string;
   description: string;
   tags: string[];
-  links?: TimelineLink[];
-  image?: string;
+  links?: JourneyLink[];
 }
 
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
-
-const ICONS: Record<string, JSX.Element> = {
-  github: <FaGithub />,
-  linkedin: <FaLinkedin />,
-  devpost: <FaDev />,
+const LINK_LABELS: Record<string, string> = {
+  devpost: "Devpost",
+  devppost: "Devpost",
+  github: "GitHub",
+  linkedin: "LinkedIn",
+  coursera: "Certificate",
+  demo: "Demo",
 };
 
-const TIMELINE_START_Y = 60;
-const TIMELINE_GAP_Y = 260;
-const LOOP_RADIUS = 64;
-const CARD_WIDTH = 440;
-const CARD_HEIGHT = 120;
-const MAX_WIDTH = 1200;
+const extra: JourneyEvent = {
+  id: 1001,
+  date: "2026-05-01",
+  title: "Started as a software developer at TiketFix",
+  description:
+    "Joined TiketFix to ship client-facing features on a legal client-intake platform used by 300+ law firm offices across North America.",
+  tags: ["Work"],
+  links: [],
+};
+
+const events: JourneyEvent[] = [...(journeyEvents as JourneyEvent[]), extra];
 
 const V1JourneyPage: React.FC = () => {
-  const [events, setEvents] = useState<TimelineEvent[]>([]);
-  const [timelineWidth, setTimelineWidth] = useState<number>(Math.min(Math.floor(window.innerWidth), MAX_WIDTH));
-  const [cardPositions, setCardPositions] = useState<{ x: number, y: number, width: number, height: number }[]>([]);
-  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const airplaneRef = useRef<HTMLImageElement>(null);
-  const breezeRef = useRef<HTMLDivElement>(null);
+  const [tag, setTag] = useState<string | null>(null);
+  const [newestFirst, setNewestFirst] = useState(false);
 
-  useEffect(() => {
-    import("../../../data/journeyEvents.json").then((module) => {
-      const timelineEvents = module.default;
-      const sorted = [...timelineEvents].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-      setEvents(sorted);
+  const tags = useMemo(() => {
+    const names = new Set<string>();
+    events.forEach((event) => event.tags.forEach((item) => names.add(item)));
+    return Array.from(names).sort((a, b) => a.localeCompare(b));
+  }, []);
+
+  const rows = useMemo(() => {
+    const filtered = events.filter((event) => (tag ? event.tags.includes(tag) : true));
+    return filtered.sort((a, b) => {
+      const byDate = a.date.localeCompare(b.date);
+      const directed = newestFirst ? -byDate : byDate;
+      return directed === 0 ? a.id - b.id : directed;
     });
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => setTimelineWidth(Math.min(Math.floor(window.innerWidth), MAX_WIDTH));
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useLayoutEffect(() => {
-    if (!events.length) return;
-    const positions = eventRefs.current.map((ref) => {
-      if (!ref) return { x: 0, y: 0, width: 0, height: 0 };
-      const rect = ref.getBoundingClientRect();
-      const parentRect = timelineRef.current?.getBoundingClientRect();
-      return {
-        x: rect.left - (parentRect?.left || 0) + rect.width / 2,
-        y: rect.top - (parentRect?.top || 0) + rect.height / 2,
-        width: rect.width,
-        height: rect.height,
-      };
-    });
-    setCardPositions(positions);
-  }, [events, timelineWidth]);
-
-  function generateLoopingPath(cardPositions: { x: number, y: number, width: number, height: number }[], width: number, startY: number, loopRadius: number) {
-    if (!cardPositions.length) return { path: "", endY: startY };
-    const minX = 32;
-    const maxX = width - 32;
-    let path = `M ${width / 2} ${startY}`;
-    let currentX = width / 2;
-    let currentY = startY;
-    for (let i = 0; i < cardPositions.length; i++) {
-      const { x, y, width: cardW, height: cardH } = cardPositions[i];
-      let approachX = x + (i % 2 === 0 ? -cardW / 2 - loopRadius : cardW / 2 + loopRadius);
-      approachX = Math.max(minX, Math.min(maxX, approachX));
-      const approachY = y - cardH / 2 - loopRadius;
-      path += ` Q ${currentX} ${(currentY + approachY) / 2}, ${approachX} ${approachY}`;
-      const loopCenterX = Math.max(minX, Math.min(maxX, x));
-      const loopCenterY = y;
-      path += ` Q ${approachX} ${approachY}, ${loopCenterX} ${loopCenterY - cardH / 2 - loopRadius}`;
-      path += ` a ${loopRadius} ${loopRadius} 0 1 1 0 ${loopRadius * 2}`;
-      path += ` a ${loopRadius} ${loopRadius} 0 1 1 0 -${loopRadius * 2}`;
-      const centerX = width / 2;
-      const centerY = y + cardH / 2 + loopRadius;
-      path += ` Q ${loopCenterX} ${loopCenterY + cardH / 2 + loopRadius}, ${centerX} ${centerY}`;
-      currentX = centerX;
-      currentY = centerY;
-    }
-    const endY = currentY + 120;
-    path += ` Q ${currentX} ${(currentY + endY) / 2}, ${width / 2} ${endY}`;
-    return { path, endY };
-  }
-
-  const { path: pathString, endY } = generateLoopingPath(cardPositions, timelineWidth, TIMELINE_START_Y, LOOP_RADIUS);
-
-  // Handle all the timeline animations
-  useEffect(() => {
-    if (!events.length) return;
-
-    // Clean up any existing animations first
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    gsap.killTweensOf(".timeline-event");
-    gsap.killTweensOf(".timeline-title");
-    gsap.killTweensOf(".timeline-description");
-    gsap.killTweensOf(airplaneRef.current);
-    gsap.killTweensOf(breezeRef.current);
-    gsap.killTweensOf("#timelinePath");
-
-    // Only animate on first load
-    if (!hasAnimated) {
-      const tl = gsap.timeline();
-
-      // Animate title and description
-      const title = document.querySelector('.timeline-title');
-      const description = document.querySelector('.timeline-description');
-      
-      if (title) {
-        gsap.set(title, { opacity: 0, y: -30 });
-        tl.to(title, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out"
-        });
-      }
-      
-      if (description) {
-        gsap.set(description, { opacity: 0, y: -20 });
-        tl.to(description, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.2,
-          ease: "power3.out"
-        }, "-=0.6");
-      }
-
-      // Draw the timeline path
-      const timelinePath = document.getElementById("timelinePath");
-      if (timelinePath) {
-        gsap.set(timelinePath, { strokeDasharray: "0 8" });
-        tl.to(timelinePath, {
-          strokeDasharray: "8 8",
-          duration: 2,
-          ease: "power2.out"
-        }, "-=0.4");
-      }
-
-      // Animate the airplane and breeze trail
-      if (airplaneRef.current && breezeRef.current) {
-        gsap.set(airplaneRef.current, { opacity: 0, scale: 0.5 });
-        gsap.set(breezeRef.current, { opacity: 0, scale: 0.5 });
-        
-        tl.to([airplaneRef.current, breezeRef.current], {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "back.out(1.7)"
-        }, "-=1.5");
-      }
-      
-      // Animate timeline event cards
-      gsap.utils.toArray<HTMLElement>(".timeline-event").forEach((el, index) => {
-        gsap.set(el, { opacity: 0, y: 60 });
-        tl.to(el, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out"
-        }, "-=0.7");
-      });
-
-      setHasAnimated(true);
-    } else {
-      // Already animated, just make sure everything is visible
-      gsap.set(".timeline-title", { opacity: 1, y: 0 });
-      gsap.set(".timeline-description", { opacity: 1, y: 0 });
-      gsap.set(".timeline-event", { opacity: 1, y: 0 });
-      gsap.set(airplaneRef.current, { opacity: 1, scale: 1 });
-      gsap.set(breezeRef.current, { opacity: 1, scale: 1 });
-      gsap.set("#timelinePath", { strokeDasharray: "8 8" });
-    }
-
-    // Set up scroll animations after the initial ones
-    setTimeout(() => {
-      // Animate events as you scroll
-      gsap.utils.toArray<HTMLElement>(".timeline-event").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 60 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: el,
-              start: "top 80%",
-              toggleActions: "play reverse play reverse",
-            },
-          }
-        );
-      });
-
-      // Make airplane and breeze follow the path on scroll
-      if (airplaneRef.current && breezeRef.current && document.getElementById("timelinePath")) {
-        gsap.set(breezeRef.current, { opacity: 0.5 });
-        gsap.to(breezeRef.current, {
-          motionPath: {
-            path: "#timelinePath",
-            align: "#timelinePath",
-            autoRotate: false,
-            alignOrigin: [0.5, 0.5],
-            start: 0.01,
-            end: 0.92,
-          },
-          scrollTrigger: {
-            trigger: ".timeline",
-            start: "top center",
-            end: "bottom center",
-            scrub: true,
-          },
-          opacity: 0.2,
-          ease: "power1.inOut"
-        });
-
-        gsap.to(airplaneRef.current, {
-          motionPath: {
-            path: "#timelinePath",
-            align: "#timelinePath",
-            autoRotate: true,
-            alignOrigin: [0.5, 0.5],
-            start: 0,
-            end: 1,
-          },
-          scrollTrigger: {
-            trigger: ".timeline",
-            start: "top center",
-            end: "bottom center",
-            scrub: true,
-          },
-          ease: "none"
-        });
-      }
-    }, hasAnimated ? 0 : 2000);
-
-  }, [events, timelineWidth, hasAnimated]);
-
-  // Clean up animations when component unmounts
-  useEffect(() => {
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      setHasAnimated(false);
-    };
-  }, []);
+  }, [tag, newestFirst]);
 
   return (
-    <div className="timeline-container" style={{ width: "100vw", maxWidth: MAX_WIDTH, margin: 0, paddingLeft: 24, overflowX: "hidden" }}>
-      <h2 className="timeline-title">My Coding Journey</h2>
-      <p className="timeline-description" style={{
-        maxWidth: "800px",
-        margin: "0 auto 40px",
-        textAlign: "center",
-        lineHeight: "1.6",
-        color: "#666",
-        fontSize: "1.1rem"
-      }}>
-        Follow my journey through the world of software development, from my first lines of code to my latest projects.
-        Each milestone represents a significant step in my growth as a developer, showcasing the challenges I've overcome
-        and the skills I've acquired along the way. The paper airplane symbolizes my continuous learning and exploration
-        in this ever-evolving field.
-      </p>
-      <div className="timeline" ref={timelineRef} style={{ position: "relative", width: "100%", height: endY + 60 }}>
-        <svg width={timelineWidth} height={endY + 60} style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none", zIndex: 1 }}>
-          <path
-            id="timelinePath"
-            d={pathString}
-            fill="none"
-            stroke="#ce686b"
-            strokeWidth="4"
-            strokeDasharray="8 8"
-            strokeOpacity="0.08"
-          />
-        </svg>
-
-        {/* Paper Airplane */}
-        {events.length > 0 && pathString && (
-          <img
-            ref={airplaneRef}
-            src={airplane}
-            alt="Paper airplane"
-            className="timeline-airplane"
-            style={{
-              position: "absolute",
-              width: 100,
-              top: 0,
-              left: 0,
-              height: 100,
-              zIndex: 2,
-              pointerEvents: "none"
-            }}
-          />
-        )}
-
-        {/* Breeze trail */}
-        {events.length > 0 && pathString && <div ref={breezeRef} className="timeline-breeze" />}
-
-        {/* Event Cards */}
-        {events.map((event, idx) => {
-          const isLeft = idx % 2 === 0;
-          return (
-            <div
-              key={event.id}
-              className={`timeline-event ${isLeft ? "left" : "right"}`}
-              ref={el => { eventRefs.current[idx] = el; }}
+    <div className="rig rig-page">
+      <div className="rig-log-page">
+        <h1>System log</h1>
+        <p className="rig-lead">
+          School, hackathons, clubs, and work since 2023. Filter by a tag, or flip the order.
+        </p>
+        <div className="rig-log-controls">
+          <button
+            type="button"
+            className="rig-toggle"
+            aria-pressed={tag === null}
+            onClick={() => setTag(null)}
+          >
+            Everything
+          </button>
+          {tags.map((name) => (
+            <button
+              key={name}
+              type="button"
+              className="rig-toggle"
+              aria-pressed={tag === name}
+              onClick={() => setTag(name)}
             >
-              <div className="timeline-content">
-                {event.image && (
-                  <img src={event.image} alt="event" className="timeline-event-image" style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
-                )}
-                <h3>{event.title}</h3>
-                <span className="timeline-date">{event.date}</span>
-                <p>{event.description}</p>
-                <div className="timeline-tags">
-                  {event.tags.map((tag, i) => (
-                    <span className="timeline-tag" key={i}>{tag}</span>
-                  ))}
-                </div>
-                {event.links && (
-                  <div className="timeline-links">
-                    {event.links.map((link, i) => (
+              {name}
+            </button>
+          ))}
+          <button
+            type="button"
+            className="rig-toggle"
+            aria-pressed={newestFirst}
+            onClick={() => setNewestFirst((value) => !value)}
+          >
+            {newestFirst ? "Show oldest first" : "Show newest first"}
+          </button>
+        </div>
+        <div className="rig-terminal">
+          {rows.map((event) => (
+            <details key={event.id} className="rig-entry">
+              <summary>
+                <span className="rig-entry-date">[{event.date}]</span>
+                <span className="rig-entry-tag">{(event.tags[0] ?? "").toLowerCase()}</span>
+                <span className="rig-entry-title">{event.title}</span>
+              </summary>
+              <div className="rig-entry-body">
+                <p className="rig-log-body">{event.description}</p>
+                {event.links && event.links.length > 0 && (
+                  <div className="rig-link-row">
+                    {event.links.map((link) => (
                       <a
-                        key={i}
+                        key={`${event.id}-${link.type}-${link.url}`}
+                        className="rig-link"
                         href={link.url}
                         target="_blank"
-                        rel="noopener noreferrer"
-                        className="timeline-link-icon"
-                        title={link.type}
+                        rel="noreferrer noopener"
                       >
-                        {ICONS[link.type] || <span>{link.type[0].toUpperCase()}</span>}
+                        {LINK_LABELS[link.type] ?? link.type}
                       </a>
                     ))}
                   </div>
                 )}
               </div>
-            </div>
-          );
-        })}
-        <div className="timeline-line" />
+            </details>
+          ))}
+        </div>
       </div>
+      <RigFooter />
     </div>
   );
 };
 
 export default V1JourneyPage;
-

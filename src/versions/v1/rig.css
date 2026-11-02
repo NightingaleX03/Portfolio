@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=VT323&display=swap");
+
+.rig {
+  --board: #f7dde2;
+  --board-deep: #efc9d1;
+  --board-shade: #e4b3be;
+  --trace: #c48a7c;
+  --trace-hot: #e8a87c;
+  --gold: #d4af37;
+  --gold-soft: #f1d78a;
+  --chip: #3b2a33;
+  --ink: #4a2f3a;
+  --ink-soft: #8c6573;
+  --paper: #fff8f5;
+  --led-green: #1f8a3b;
+  --led-amber: #c47d12;
+  --display: "Chakra Petch", "Segoe UI", sans-serif;
+  --body: "Instrument Sans", "Segoe UI", sans-serif;
+  --mono: "VT323", "Courier New", monospace;
+  --text-color: var(--ink);
+  color-scheme: light;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  background: #070504;
+}
+
+.rig h1,
+.rig h2,
+.rig h3,
+.rig h4,
+.rig h5,
+.rig h6 {
+  font-family: var(--display);
+  color: var(--text-color);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.rig p {
+  font-family: var(--body);
+  color: var(--text-color);
+}
+
+.rig-page {
+  background: radial-gradient(ellipse at 50% -8%, #3d261c 0%, #16100e 42%, #070504 78%);
+  min-height: calc(100vh - 56px);
+  padding: 22px 22px 36px;
+  overflow-x: clip;
+}
+
+.rig-lead {
+  margin: 8px 0 0;
+  max-width: 62ch;
+}
+
+.rig :focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.rig button,
+.rig input,
+.rig summary {
+  font-family: inherit;
+}
+
+.rig a {
+  color: inherit;
+}
+
+.rig a.rig-socket,
+.rig a.rig-link {
+  color: var(--gold-soft);
+}
+
+.rig-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  background: var(--board);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 2px;
+  line-height: 1;
+}
+
+.rig-chip::before,
+.rig-chip::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  width: 4px;
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  border-radius: 1px;
+}
+
+.rig-chip::before {
+  left: 0;
+}
+
+.rig-chip::after {
+  right: 0;
+}
+
+.rig-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 4px 12px;
+  background: var(--chip);
+  color: var(--gold-soft);
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid var(--gold);
+}
+
+.rig-link:hover {
+  background: #4a3540;
+}
+
+.rig-toggle {
+  appearance: none;
+  border: 1px solid var(--board-shade);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.rig-toggle[aria-pressed="true"] {
+  background: var(--chip);
+  color: var(--gold-soft);
+  border-color: var(--chip);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.rig-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-top: 28px;
+  padding: 12px 4px 4px;
+  background: transparent;
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.rig .rig-footer p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--paper);
+}
+
+.rig-footer-ports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rig-socket {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 28px;
+  min-height: 26px;
+  padding: 3px 7px;
+  background: var(--chip);
+  color: var(--gold-soft);
+  text-decoration: none;
+  border-radius: 4px 4px 6px 6px;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.55);
+}
+
+.rig-socket svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.rig-socket-label {
+  font-family: var(--display);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.rig-footer .rig-socket-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.rig-footer .rig-socket {
+  position: relative;
+  width: 30px;
+  height: 26px;
+  padding: 0;
+}
+
+@media (max-width: 640px) {
+  .rig-page {
+    padding: 16px 16px 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rig *,
+  .rig *::before,
+  .rig *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .rig .rig-part.is-hot {
+    transform: none !important;
+  }
+
+  .rig .is-hot .bus,
+  .rig .rig-packet {
+    animation: none !important;
+    stroke-dasharray: none !important;
+  }
+}

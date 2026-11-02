@@ -1,0 +1,814 @@
+.rig-board {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 18px 30px;
+  background-color: #070504;
+  background-image:
+    radial-gradient(circle, rgba(212, 175, 55, 0.32) 0.6px, transparent 0.85px),
+    linear-gradient(165deg, #1a120f 0%, #0c0908 40%, #070504 100%);
+  background-size: 14px 14px, auto;
+  border-radius: 18px;
+  box-shadow:
+    inset 0 0 0 1px rgba(212, 175, 55, 0.32),
+    0 22px 48px rgba(0, 0, 0, 0.55);
+}
+
+.rig-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.rig-decor-svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.rig-decor-trace {
+  fill: none;
+  stroke: var(--trace);
+  stroke-width: 1.15;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.rig-via {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.15;
+}
+
+.rig-via-hole {
+  fill: #070504;
+  stroke: none;
+}
+
+.rig-packet {
+  fill: none;
+  stroke: var(--trace-hot);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 8 100;
+  animation: rig-packet 1.6s linear;
+}
+
+@keyframes rig-packet {
+  from {
+    stroke-dashoffset: 8;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.rig-smd {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.rig-smd-resistor {
+  background: linear-gradient(90deg, var(--gold) 0 3px, #6d4a43 3px calc(100% - 3px), var(--gold) calc(100% - 3px));
+  border-radius: 1px;
+}
+
+.rig-smd-cap {
+  background: linear-gradient(90deg, var(--gold) 0 3px, #efe4dc 3px calc(100% - 3px), var(--gold) calc(100% - 3px));
+  border: 1px solid rgba(74, 47, 58, 0.2);
+  border-radius: 1px;
+}
+
+.rig-smd-crystal {
+  background: linear-gradient(180deg, #f4f1ee, #c9c2bc);
+  border: 1px solid var(--gold);
+  border-radius: 40%;
+}
+
+.rig-smd-qfn {
+  background:
+    repeating-linear-gradient(90deg, var(--gold) 0 2px, transparent 2px 4px) top / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--gold) 0 2px, transparent 2px 4px) bottom / 100% 2px no-repeat,
+    repeating-linear-gradient(0deg, var(--gold) 0 2px, transparent 2px 4px) left / 2px 100% no-repeat,
+    repeating-linear-gradient(0deg, var(--gold) 0 2px, transparent 2px 4px) right / 2px 100% no-repeat,
+    var(--chip);
+  border-radius: 2px;
+}
+
+.rig-slot {
+  position: absolute;
+  height: 16px;
+  border-radius: 9px;
+  background: linear-gradient(
+    90deg,
+    var(--trace) 0 14px,
+    var(--chip) 14px calc(100% - 14px),
+    var(--trace) calc(100% - 14px)
+  );
+  box-shadow: inset 0 0 0 1px rgba(196, 138, 124, 0.8);
+}
+
+.rig-slot::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 4px;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, var(--gold) 0 2px, transparent 2px 6px);
+}
+
+.rig-hole {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--chip);
+  box-shadow: 0 0 0 3px var(--gold), inset 0 0 0 2px #1a1216;
+  z-index: 3;
+}
+
+.rig-buses {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.bus {
+  fill: none;
+  stroke: var(--trace);
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.rig-buses.is-sweeping .bus {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: rig-bus-draw 1.2s ease forwards;
+}
+
+.rig-buses .is-hot .bus {
+  stroke: var(--trace-hot);
+  stroke-width: 1.75;
+  stroke-dasharray: 7 11;
+  animation: rig-march 0.55s linear infinite;
+}
+
+@keyframes rig-bus-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rig-march {
+  to {
+    stroke-dashoffset: 18;
+  }
+}
+
+.rig-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1.15fr) minmax(0, 1fr) minmax(168px, 230px);
+  grid-template-areas:
+    "silk silk silk silk ram"
+    "io cpu cpu vrm ram"
+    "io cpu cpu chip ram"
+    "bios m2a m2b bat ram"
+    "gpu gpu gpu gpu sata";
+}
+
+.ga-silk { grid-area: silk; }
+.ga-io { grid-area: io; }
+.ga-cpu { grid-area: cpu; min-height: 210px; }
+.ga-vrm { grid-area: vrm; }
+.ga-chip { grid-area: chip; }
+.ga-ram { grid-area: ram; min-height: 0; }
+.ga-bios { grid-area: bios; }
+.ga-m2a { grid-area: m2a; }
+.ga-m2b { grid-area: m2b; }
+.ga-bat { grid-area: bat; }
+.ga-gpu { grid-area: gpu; min-height: 128px; }
+.ga-sata { grid-area: sata; }
+
+.rig-part {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  min-width: 0;
+  position: relative;
+  border-radius: 6px;
+}
+
+.rig-part.is-hot {
+  transform: translateY(-2px);
+  z-index: 4;
+  box-shadow:
+    0 10px 16px rgba(74, 47, 58, 0.16),
+    0 0 0 1px var(--gold),
+    0 0 14px rgba(241, 215, 138, 0.5);
+}
+
+.rig-silk {
+  padding: 8px 12px 4px;
+  background: transparent;
+}
+
+.rig .rig-silk-model {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--gold-soft);
+}
+
+.rig .rig-silk h1 {
+  margin: 4px 0 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  letter-spacing: -0.03em;
+  color: var(--paper);
+}
+
+.rig .rig-role {
+  display: inline-block;
+  margin: 8px 0 0;
+  padding: 3px 8px;
+  background: var(--chip);
+  color: var(--gold-soft);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.rig .rig-blurb,
+.rig .rig-hint {
+  margin: 10px 0 0;
+  max-width: 62ch;
+  color: var(--paper);
+  font-size: 1rem;
+}
+
+.rig-hint {
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+.rig-cpu {
+  background:
+    repeating-linear-gradient(90deg, var(--gold) 0 2px, transparent 2px 7px) top / 100% 7px no-repeat,
+    repeating-linear-gradient(90deg, var(--gold) 0 2px, transparent 2px 7px) bottom / 100% 7px no-repeat,
+    repeating-linear-gradient(0deg, var(--gold) 0 2px, transparent 2px 7px) left / 7px 100% no-repeat,
+    repeating-linear-gradient(0deg, var(--gold) 0 2px, transparent 2px 7px) right / 7px 100% no-repeat,
+    var(--board);
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.rig-ihs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+  min-height: 150px;
+  padding: 16px 14px;
+  border-radius: 3px;
+  background: linear-gradient(155deg, #f8d5ce 0%, #e2aa9e 32%, #c48a7c 58%, #efc2b6 78%, #b8786c 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 245, 0.45);
+}
+
+.rig-kicker,
+.rig-part-title,
+.rig-part-sub {
+  display: block;
+}
+
+.rig-kicker {
+  font-family: var(--display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.rig-part-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2vw, 1.7rem);
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.rig-part-sub {
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.rig-io {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background: linear-gradient(165deg, #f8ece8, #e3c3bb 42%, #f6e4de 68%, #c9a49b);
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 245, 0.65);
+}
+
+.rig .rig-io-label {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.rig-io-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rig-io .rig-socket {
+  justify-content: flex-start;
+  min-height: 30px;
+}
+
+.rig-ram {
+  display: flex;
+  gap: 6px;
+  height: 100%;
+  min-height: 0;
+}
+
+@media (min-width: 1021px) {
+  .ga-ram {
+    position: relative;
+  }
+
+  .rig-ram {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.rig-dimm {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  padding: 8px 4px 0 16px;
+  border-radius: 3px 3px 1px 1px;
+  background: linear-gradient(180deg, #d56d80, #8e3b4e 74%);
+  border-bottom: 7px solid var(--gold);
+  color: var(--paper);
+}
+
+.rig-dimm-chips {
+  position: absolute;
+  top: 10px;
+  bottom: 16px;
+  left: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.rig-dimm-chips i {
+  display: block;
+  width: 9px;
+  height: 7px;
+  background: var(--chip);
+  border-radius: 1px;
+}
+
+.rig-dimm-text {
+  writing-mode: vertical-rl;
+  display: flex;
+  gap: 8px;
+  height: 100%;
+  color: var(--paper);
+}
+
+.rig-dimm-slot,
+.rig-dimm-role {
+  font-family: var(--display);
+  color: var(--paper);
+}
+
+.rig-dimm-slot {
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.rig-dimm-role {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.rig-m2 {
+  --text-color: var(--paper);
+  min-height: 86px;
+  padding: 8px 10px 14px;
+  background: var(--chip);
+  color: var(--paper);
+  border-radius: 2px;
+}
+
+.rig-m2 .rig-kicker,
+.rig-m2 .rig-part-title,
+.rig-m2 .rig-part-sub {
+  color: var(--paper);
+}
+
+.rig-m2 .rig-part-title {
+  font-size: 1.05rem;
+}
+
+.rig-nand-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.rig-nand {
+  width: 28px;
+  height: 16px;
+  border-radius: 1px;
+  background: linear-gradient(180deg, #5c4a52, #2a2026);
+  box-shadow: inset 0 0 0 1px rgba(241, 215, 138, 0.35);
+}
+
+.rig-m2-edge {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 0;
+  height: 7px;
+  background: linear-gradient(90deg, var(--gold) 0 42%, transparent 42% 50%, var(--gold) 50%);
+}
+
+.rig-vrm,
+.rig-chipset,
+.rig-bios,
+.rig-bat,
+.rig-sata {
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.rig-vrm {
+  background: var(--board);
+  box-shadow: inset 0 0 0 1px var(--board-shade);
+}
+
+.rig-chokes {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 6px;
+}
+
+.rig-chokes i {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  background: radial-gradient(circle at 50% 50%, transparent 32%, var(--trace) 33% 58%, var(--gold) 59%);
+  box-shadow: inset 0 0 0 2px var(--chip);
+}
+
+.rig-chipset {
+  background: var(--board);
+  box-shadow: inset 0 0 0 1px var(--board-shade);
+}
+
+.rig-fins {
+  height: 36px;
+  margin-bottom: 6px;
+  border-radius: 2px;
+  border: 1px solid var(--gold);
+  background: repeating-linear-gradient(180deg, #6a5460 0 3px, #241920 3px 6px);
+}
+
+.rig-chipset .rig-part-title,
+.rig-vrm .rig-part-title,
+.rig-bios .rig-part-title,
+.rig-sata .rig-part-title,
+.rig-bat .rig-part-title {
+  font-size: 1rem;
+}
+
+.rig-bios {
+  background:
+    repeating-linear-gradient(180deg, var(--gold) 0 3px, transparent 3px 8px) left / 8px 100% no-repeat,
+    repeating-linear-gradient(180deg, var(--gold) 0 3px, transparent 3px 8px) right / 8px 100% no-repeat,
+    var(--board);
+  padding: 0 10px;
+}
+
+.rig-dip {
+  --text-color: var(--paper);
+  height: 100%;
+  min-height: 78px;
+  padding: 8px;
+  background: var(--chip);
+  color: var(--paper);
+  border-radius: 2px;
+}
+
+.rig-dip .rig-kicker,
+.rig-dip .rig-part-title {
+  color: var(--paper);
+}
+
+.rig-bat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.rig-coin {
+  width: min(100%, 104px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  background:
+    radial-gradient(circle at 50% 48%, transparent 0 16%, #c4a15a 17% 20%, transparent 21%),
+    radial-gradient(circle at 38% 32%, var(--gold-soft), var(--gold) 42%, #8d6e22 74%);
+  box-shadow: inset 0 0 0 3px var(--gold-soft), 0 1px 0 rgba(74, 47, 58, 0.25);
+  color: var(--chip);
+}
+
+.rig-coin .rig-kicker,
+.rig-coin .rig-part-title,
+.rig-coin .rig-part-sub {
+  color: var(--chip);
+}
+
+.rig-coin .rig-part-title {
+  font-size: 0.95rem;
+}
+
+.rig-coin .rig-part-sub,
+.rig-coin .rig-kicker {
+  font-size: 0.68rem;
+}
+
+.rig-gpu {
+  --text-color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 12px 0;
+  background: linear-gradient(180deg, #4a3642, var(--chip));
+  color: var(--paper);
+  border-radius: 6px 6px 2px 2px;
+  overflow: hidden;
+}
+
+.rig-gpu-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.rig-fans {
+  display: flex;
+  gap: 8px;
+  flex: none;
+}
+
+.rig-fan {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: repeating-conic-gradient(from 8deg, #6d5662 0deg 16deg, #21181e 16deg 38deg);
+  position: relative;
+}
+
+.rig-fan::after {
+  content: "";
+  position: absolute;
+  inset: 32%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, var(--gold-soft), var(--gold) 55%, #7a6220);
+}
+
+.rig-fan.is-spin {
+  animation: rig-fan-spin 0.8s linear infinite;
+}
+
+@keyframes rig-fan-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rig-gpu-copy {
+  min-width: 0;
+}
+
+.rig-gpu .rig-kicker,
+.rig-gpu .rig-part-title,
+.rig-gpu .rig-part-sub {
+  color: var(--paper);
+}
+
+.rig-gpu-status {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--gold-soft);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.rig-pcie {
+  display: flex;
+  gap: 3px;
+  height: 14px;
+  margin-top: 8px;
+  padding: 2px;
+  background: #1c1418;
+}
+
+.rig-pcie i {
+  flex: 1;
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  border-radius: 1px;
+}
+
+.rig-sata {
+  background: #f3eee9;
+  box-shadow: inset 0 0 0 1px var(--board-shade);
+  padding: 10px;
+  color: var(--ink);
+}
+
+.rig-sata-label {
+  background: var(--paper);
+  border: 1px dashed var(--board-shade);
+  border-radius: 2px;
+  padding: 8px;
+  min-height: 72px;
+}
+
+.rig-sata .rig-kicker,
+.rig-sata .rig-part-title,
+.rig-sata .rig-part-sub {
+  color: var(--ink);
+}
+
+.rig-sata-tab {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: var(--chip);
+  color: var(--gold-soft);
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 2px;
+}
+
+@media (max-width: 1020px) and (min-width: 641px) {
+  .ga-ram {
+    max-height: 210px;
+    overflow: hidden;
+  }
+
+  .rig-dimm {
+    height: 210px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .rig-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "silk silk silk"
+      "cpu cpu io"
+      "cpu cpu vrm"
+      "ram ram ram"
+      "gpu gpu gpu"
+      "m2a m2b chip"
+      "bios bat sata";
+  }
+
+  .ga-cpu {
+    min-height: 180px;
+  }
+
+  .ga-ram {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 640px) {
+  .rig-board {
+    padding: 22px 10px 24px;
+  }
+
+  .rig-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "silk silk"
+      "cpu cpu"
+      "gpu gpu"
+      "ram ram"
+      "m2a m2a"
+      "m2b m2b"
+      "vrm chip"
+      "bios bat"
+      "sata sata"
+      "io io";
+  }
+
+  .ga-cpu,
+  .ga-ram {
+    min-height: 0;
+  }
+
+  .rig-silk h1 {
+    max-width: none;
+  }
+
+  .rig-ram {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .rig-dimm {
+    min-height: 72px;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 0;
+    border-left: 7px solid var(--gold);
+    border-radius: 2px;
+    padding: 8px 10px 8px 12px;
+  }
+
+  .rig-dimm-chips {
+    position: static;
+    flex-direction: row;
+    margin-right: 8px;
+  }
+
+  .rig-dimm-text {
+    writing-mode: horizontal-tb;
+    flex-direction: column;
+    gap: 2px;
+    height: auto;
+  }
+
+  .rig-io-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .rig-io .rig-socket {
+    flex: 1 1 30%;
+  }
+
+  .rig-gpu-top {
+    align-items: flex-start;
+  }
+
+  .rig-fan {
+    width: 42px;
+    height: 42px;
+  }
+}

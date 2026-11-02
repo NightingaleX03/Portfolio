@@ -23,7 +23,7 @@ interface TimelineEvent {
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-const ICONS: Record<string, JSX.Element> = {
+const ICONS: Record<string, React.ReactElement> = {
   github: <FaGithub />,
   linkedin: <FaLinkedin />,
   devpost: <FaDev />,
