@@ -323,7 +323,7 @@ const RunnersPage: React.FC = () => {
                 <div className="university-content">
                   <div className="university-header">
                     <h3 className="university-name">Seneca Polytechnic</h3>
-                    <span className="university-dates">2023 - 2024</span>
+                    <span className="university-dates">Sept. 2023 – Dec. 2024</span>
                   </div>
                   <p className="university-description">
                     At Seneca Polytechnic from 2023 to 2024, I gained hands-on experience in software development 
@@ -338,10 +338,10 @@ const RunnersPage: React.FC = () => {
                 <div className="university-content">
                   <div className="university-header">
                     <h3 className="university-name">Ontario Tech University</h3>
-                    <span className="university-dates">2024 - 2027</span>
+                    <span className="university-dates">Sept. 2024 – May 2028</span>
                   </div>
                   <p className="university-description">
-                    My experience at Ontario Tech University from 2024 to 2027 (expected) has provided me with 
+                    My experience at Ontario Tech University from Sept. 2024 to May 2028 (expected) has provided me with 
                     advanced knowledge in computer science and technology. I engage in cutting-edge research and 
                     projects that expand my understanding of modern software systems and emerging technologies.
                   </p>

@@ -27,17 +27,28 @@ const LINK_LABELS: Record<string, string> = {
   demo: "Demo",
 };
 
-const extra: JourneyEvent = {
-  id: 1001,
-  date: "2026-05-01",
-  title: "Started as a software developer at TiketFix",
-  description:
-    "Joined TiketFix to ship client-facing features on a legal client-intake platform used by 300+ law firm offices across North America.",
-  tags: ["Work"],
-  links: [],
-};
+const extra: JourneyEvent[] = [
+  {
+    id: 1001,
+    date: "2026-05-01",
+    title: "Started as a software engineer at TiketFix",
+    description:
+      "Client-intake platform for legal practices. Delivered frontend for 4 products, including a CRM, two client-facing websites, and an iOS/Android app, serving 300+ law firms across North America.",
+    tags: ["Work"],
+    links: [],
+  },
+  {
+    id: 1002,
+    date: "2026-10-23",
+    title: "Started as a vision language model software developer at Watchborg",
+    description:
+      "Joined Watchborg through Riipen Level UP, remote. Developing a vision-language model capability within Watchborg’s existing AI-powered virtual supervision MVP, focused on automated cleaning-quality verification for short-term rentals.",
+    tags: ["Work"],
+    links: [],
+  },
+];
 
-const events: JourneyEvent[] = [...(journeyEvents as JourneyEvent[]), extra];
+const events: JourneyEvent[] = [...(journeyEvents as JourneyEvent[]), ...extra];
 
 const V1JourneyPage: React.FC = () => {
   const [tag, setTag] = useState<string | null>(null);

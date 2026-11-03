@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import rawProjects from "../../../projectsInfo.json";
-import { newProjects, type CatalogProject } from "../data/rig";
+import { m2b, newProjects, type CatalogProject } from "../data/rig";
 import RigFooter from "../components/RigFooter";
 import "../rig.css";
 import "./css/project.css";
@@ -64,8 +64,16 @@ const GROUPS: { id: GroupId; title: string }[] = [
 
 const catalog: (CatalogProject & { group: GroupId })[] = [
   ...newProjects.map((project) => ({ ...project, group: "compilers" as const })),
+  {
+    title: m2b.title,
+    role: m2b.subtitle ?? m2b.part,
+    description: m2b.summary,
+    tools: m2b.tools ?? [],
+    links: { github: "https://github.com/NightingaleX03/Gardening-Commits" },
+    group: "other" as const,
+  },
   ...(rawProjects as RawProject[])
-    .filter((project) => project.title !== "React Portfolio")
+    .filter((project) => project.title !== "React Portfolio" && project.title !== "Startup Connect")
     .map(normalizeRaw)
     .map((project) => ({
       ...project,

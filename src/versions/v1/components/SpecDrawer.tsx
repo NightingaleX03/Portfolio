@@ -77,16 +77,36 @@ const SpecDrawer: React.FC<SpecDrawerProps> = ({ part, onClose }) => {
             <h2 id="rig-spec-title">{part.title}</h2>
             {part.subtitle && <p className="rig-drawer-sub">{part.subtitle}</p>}
             {part.status && <span className="rig-pill">{part.status}</span>}
-            <p className="rig-drawer-summary">{part.summary}</p>
-            {part.points && part.points.length > 0 && (
-              <ul className="rig-pins">
-                {part.points.map((point) => (
-                  <li key={point}>
-                    <span className="rig-pad" aria-hidden="true" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+            {part.sections && part.sections.length > 0 ? (
+              part.sections.map((section) => (
+                <div key={section.text} className="rig-section">
+                  <p className="rig-drawer-summary">{section.text}</p>
+                  {section.points && section.points.length > 0 && (
+                    <ul className="rig-pins">
+                      {section.points.map((point) => (
+                        <li key={point}>
+                          <span className="rig-pad" aria-hidden="true" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))
+            ) : (
+              <>
+                {part.summary && <p className="rig-drawer-summary">{part.summary}</p>}
+                {part.points && part.points.length > 0 && (
+                  <ul className="rig-pins">
+                    {part.points.map((point) => (
+                      <li key={point}>
+                        <span className="rig-pad" aria-hidden="true" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
             )}
             {part.tools && part.tools.length > 0 && (
               <>

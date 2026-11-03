@@ -61,7 +61,7 @@ const V2AboutPage: React.FC = () => {
             <p className="v2-about-text">
               I'm a recent graduate of Computer Programming at Seneca Polytechnic and a current 
               student at Ontario Tech University studying Computer Science with a specialization 
-              in Data Science.
+              in Software Development.
             </p>
             <p className="v2-about-text">
               <strong>Fun Fact:</strong> In my free time, I enjoy playing video games, stargazing, 

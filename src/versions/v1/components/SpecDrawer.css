@@ -88,6 +88,10 @@
   line-height: 1.35;
 }
 
+.rig-section + .rig-section {
+  margin-top: 18px;
+}
+
 .rig-drawer-summary {
   margin: 14px 0 0;
   font-size: 1rem;
